@@ -1,0 +1,71 @@
+{% extends 'seeker/base_job.html' %}
+{% block head_exts %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/seeker_job_detail.css') }}">
+    <script src="{{ url_for('static',filename='js/seeker_index.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+    <section id="job-detail-container">
+        <div class="placeholder"></div>
+        <div class="container">
+            <div class="job-detail-wrap col-12">
+                <div class="job-card-wrap">
+                    <div class="title-wrap">
+                        <span>{{ job.job_category }}</span>
+                    </div>
+
+                    <div class="job-title-wrap">
+                        <!--category-->
+                        <div class="job-title">
+                            <span>{{ job.job_name }}</span>
+                        </div>
+                        <div class="job-city">
+                            <img src="{{ url_for('static',filename='icons/alarm.svg') }}" alt="">
+                            <span class="value">{{ job.workplace }}</span>
+                            <img src="{{ url_for('static',filename='icons/alarm.svg') }}" alt=""
+                                 style="margin-left: 20px">
+                            <span class="value">{{ job.job_type }}</span>
+                        </div>
+                    </div>
+                    <hr class="devider">
+                    <div class="job-content">
+                        <div class="content-item">
+                            <h4>岗位描述：</h4>
+                            <ul>
+                                <li>成为一位优秀的游戏体验设计师，为玩家保证游戏的可用性和易用性，给他们带来畅快舒适的游戏体验；</li>
+                                <li>施展你的创意，爆发你的灵感，通过你的想象力，让玩家体会到你为他们准备的种种惊喜；</li>
+                                <li>运用你严谨的逻辑，参与游戏的用户分析、策划沟通，为玩家量身定制设计方案；</li>
+                                <li>与一流团队一起创作，让全球亿级用户体验你的游戏作品，你就是爆款的创造者。</li>
+                            </ul>
+                        </div>
+                        <div class="content-item">
+                            <h4>岗位要求:</h4>
+                            <ul>
+                                <li>与一流团队一起创作，让全球亿级用户体验你的游戏作品，你就是爆款的创造者。</li>
+                                <li>对交互设计理论有一定的理解，掌握交互设计相关专业知识和技巧；</li>
+                                <li>以用户为中心，从用户角度出发进行分析和设计；</li>
+                                <li>良好的逻辑分析能力，优秀的沟通及表达能力 ；</li>
+                                <li>热爱游戏，对游戏有自己的思考并愿意投身其中者优先。</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="contact">
+                        <h4>申请职位</h4>
+                        {% if g.user %}
+                            <a class="btn btn-primary" href="">投递简历</a>
+                        {% else %}
+                            <a  class="btn btn-primary" href="{{ url_for('auth.login') }}">登录投递简历</a>
+                        {% endif %}
+                    </div>
+                    <hr class="devider">
+                    <div class="share">
+                        <img src="{{ url_for('static',filename='images/weixin.png') }}" alt="">
+                        <span class="text-muted">分享职位给你的小伙伴，让更多优秀的人一起来做有挑战的事</span>
+                    </div>
+                </div>
+            </div>
+            <div class="placeholder"></div>
+        </div>
+    </section>
+{% endblock %}

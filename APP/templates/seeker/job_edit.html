@@ -1,0 +1,97 @@
+{% extends 'seeker/base_job.html' %}
+{% block head_exts %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/seeker_job_edit.css') }}">
+    <script src="{{ url_for('static',filename='js/seeker_job_edit.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+    <section id="job-edit-container">
+        <div class="placeholder"></div>
+        <div class="container">
+            <div class="job-edit-wrap col-12">
+                <div class="job-card-wrap">
+                    <div class="title-wrap">
+                        <span>研发</span>
+                    </div>
+                    <div class="job-title-wrap">
+                        <!--category-->
+                        <div class="job-title">
+                            <span>后端开发工程师</span>
+                        </div>
+                        <div class="job-city">
+                            <img src="{{ url_for('static',filename='icons/alarm.svg') }}" alt="">
+                            <span class="value">北京</span>
+                            <img src="{{ url_for('static',filename='icons/alarm.svg') }}" alt=""
+                                 style="margin-left: 20px">
+                            <span class="value">实习</span>
+                        </div>
+                    </div>
+                    <hr class="devider">
+                    <div class="resume-wrap">
+                        <span class="prompt">*</span>
+                        <span class="title">简历上传</span>
+                        <input type="text" class="form-control" required>
+                    </div>
+                    <div class="name-wrap">
+                        <span class="prompt">*</span>
+                        <span class="title">姓名</span>
+                        <input type="text" class="form-control" placeholder="请输入姓名" required>
+                    </div>
+                    <div class="phone-wrap">
+                        <span class="prompt">*</span>
+                        <span class="title">手机号</span>
+                        <div class="search-bar flex justify-content-start">
+                            <span class="form-control">+86 中国大陆</span>
+                            <input type="text" id="search_input" class="form-control" placeholder="请输入手机号">
+                        </div>
+                    </div>
+                    <div class="email-wrap">
+                        <span class="prompt">*</span>
+                        <span class="title">常用邮箱</span>
+                        <input type="text" class="form-control" placeholder="请输入邮箱" required>
+                    </div>
+                    <div class="idcard-wrap">
+                        <span class="prompt">*</span>
+                        <span class="title">个人证件</span>
+
+                        <div class="flex flex-row">
+                            <div class="dropdown">
+                                <button class="dropdown-toggle form-control"
+                                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    身份证
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                    <button class="dropdown-item" type="button">身份证</button>
+                                    <button class="dropdown-item" type="button">护照</button>
+                                    <button class="dropdown-item" type="button">香港身份证</button>
+                                    <button class="dropdown-item" type="button">台湾证</button>
+                                    <button class="dropdown-item" type="button">其他</button>
+                                </div>
+                            </div>
+                            <div class="idcard">
+                                <input type="text" class="form-control" placeholder="请输入证件号码" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sex-wrap">
+
+                    </div>
+                    <div class="birthday-wrap">
+
+                    </div>
+                    <div class="education-wrap">
+
+                    </div>
+                    <div class="internship-wrap">
+
+                    </div>
+                    <div class="campus-wrap">
+
+                    </div>
+                    <button class="btn btn-primary">提交</button>
+                </div>
+            </div>
+            <div class="placeholder"></div>
+        </div>
+    </section>
+{% endblock %}

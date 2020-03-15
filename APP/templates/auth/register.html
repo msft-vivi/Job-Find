@@ -1,0 +1,92 @@
+{% extends 'auth/base_auth.html' %}
+{% block title %}注册{% endblock %}
+{% block header %}
+{% endblock %}
+
+{% block content %}
+    <div class="auth-container">
+        <div class="container">
+            <div class="flex justify-content-center align-items-center">
+                <img class="mb-4" src="{{ url_for('static',filename='icons/bootstrap.svg') }}" alt=""
+                     width="72" height="72">
+            </div>
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#job_seeker" role="tab"
+                       aria-controls="pills-home" aria-selected="true">个人用户</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#job_enterprise" role="tab"
+                       aria-controls="pills-profile" aria-selected="false">企业用户</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="job_seeker" role="tabpanel"
+                     aria-labelledby="pills-home-tab">
+                    <form action="{{ url_for('auth.register') }}" method="post">
+                        <input type="text" name = "usertype" value="0" hidden>
+                        <div class="form-group">
+                            <label for="username" class="sr-only">用户名</label>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="用户名"
+                                   aria-describedby="usernameHelp" autofocus required>
+                            <small id="usernameHelp" class="form-text text-muted">请勿使用非法字符</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="password1" class="sr-only">密码</label>
+                            <input type="password" class="form-control" id="password1" name="password1"
+                                   aria-describedby="passwordHelp" placeholder="密码" required>
+                            <small id="passwordHelp" class="form-text text-muted">密码至少10位数字</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="password2" class="sr-only">验证密码</label>
+                            <input type="password" class="form-control" id="password2" name="password2"
+                                   placeholder="验证密码" required>
+                        </div>
+                        <div class="form-group flex justify-content-center">
+                            <div class="flex align-items-baseline">
+                                <input type="checkbox" class="form-check-input" id="register_accept" required>
+                                <label class="form-check-label" for="register_accept">同意</label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">注册</button>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="job_enterprise" role="tabpanel" aria-labelledby="pills-profile-tab">
+                     <form action="{{ url_for('auth.register') }}" method="post">
+                         <input type="text" name = "usertype" value="1" hidden>
+                        <div class="form-group">
+                            <label for="username" class="sr-only">用户名</label>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="用户名" aria-describedby="usernameHelp" autofocus required>
+                            <small id="usernameHelp" class="form-text text-muted">请勿使用非法字符</small>
+                        </div>
+                         <div class="form-group">
+                            <label for="username" class="sr-only">企业名</label>
+                            <input type="text" class="form-control" id="enterprise_name" name="enterprise_name" placeholder="企业名" aria-describedby="usernameHelp" autofocus required>
+                            <small id="usernameHelp" class="form-text text-muted">请勿使用非法字符</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="password1" class="sr-only">密码</label>
+                            <input type="password" class="form-control" id="password1" name="password1"
+                                   aria-describedby="passwordHelp" placeholder="密码" required>
+                            <small id="passwordHelp" class="form-text text-muted">密码至少10位数字</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="password2" class="sr-only">验证密码</label>
+                            <input type="password" class="form-control" id="password2" name="password2" placeholder="验证密码" required>
+                        </div>
+                        <div class="form-group flex justify-content-center">
+                            <div class="flex align-items-baseline">
+                                <input type="checkbox" class="form-check-input" id="register_accept" required>
+                                <label class="form-check-label" for="register_accept">同意</label>
+                            </div>
+                        </div>
+
+                            <button type="submit" class="btn btn-primary btn-block">注册</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

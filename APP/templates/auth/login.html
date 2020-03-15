@@ -1,0 +1,73 @@
+{% extends 'auth/base_auth.html' %}
+
+{% block title %}登录{% endblock %}
+{% block head_exts %}
+    <script>
+        $(function () {
+            check();
+            console.log($(".radio-wrap input:checked").val());
+            $("#seeker").on("click",function () {
+                check();
+            });
+            $("#enterpriser").on("click",function () {
+                check();
+            })
+        });
+        function check() {
+            $(".radio-wrap input").each(function () {
+                    if($(this).prop("checked")){
+                        console.log($(this).val());
+                    }
+                })
+        }
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="auth-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <form action="{{ url_for('auth.login') }}" method="post">
+                        <div class="flex justify-content-center align-items-center">
+                            <img class="mb-4" src="{{ url_for('static',filename='icons/bootstrap.svg') }}" alt=""
+                                 width="72" height="72">
+                        </div>
+                        <div class="form-group">
+                            <label for="username" class="sr-only">用户名</label>
+                            <input type="text" id="username" name="username" class="form-control" placeholder="用户名"
+                                   required autofocus>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword" class="sr-only">密码</label>
+                            <input type="password" name="password" id="inputPassword" class="form-control"
+                                   placeholder="密码" required>
+                        </div>
+                        <div class="radio-wrap">
+                            <div class="radio"><input type="radio" name="usertype" id="seeker" value="0" checked> 个人用户</div>
+                            <div class="radio"><input type="radio" name="usertype" id="enterpriser" value="1"> 企业用户</div>
+                        </div>
+
+                        <button class="btn btn-primary btn-block mt-2" type="submit" id="btn">登录</button>
+                        <div class="flex justify-content-center">
+                            <p class="mt-5 mb-3 text-muted">&copy; OvO</p>
+                        </div>
+                    </form> <!--end of form-->
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{#                        <div class="btn-group btn-group-toggle" data-toggle="buttons">#}
+{##}
+{#                                #}
+{##}
+{#                        </div>#}
+                        {#                        <div class="form-group flex justify-content-center">#}
+                        {#                            <div class="flex align-items-baseline">#}
+                        {#                                <input type="checkbox" class="form-check-input" id="remember_me">#}
+                        {#                                <label class="form-check-label" for="exampleCheck1">记住我</label>#}
+                        {#                            </div>#}
+                        {#                        </div>#}

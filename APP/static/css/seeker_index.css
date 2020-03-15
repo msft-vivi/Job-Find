@@ -1,0 +1,129 @@
+
+.flex {
+    display: flex;
+}
+
+
+/*--------------------------------------------------------------
+# seeker-carousel
+--------------------------------------------------------------*/
+#job-carousel{
+    height: 400px;
+}
+
+#job-carousel .carousel-item img{
+    background: no-repeat center center;
+    background-size: cover;
+}
+/*--------------------------------------------------------------
+# seeker-content
+--------------------------------------------------------------*/
+#job-content {
+    background: #F5F5F5;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#job-content .side-bar ul{
+    list-style: none;
+}
+#job-content .side-bar li{
+    font-size: 20px;
+    padding: 15px 50px;
+    background-color: #fff;
+}
+#job-content .side-bar ul li a{
+    text-decoration: none;
+    color: #000;
+}
+#job-content .side-bar li:hover,#job-content .side-bar li.active{
+    background-color: #007bff;
+}
+
+#job-content .side-bar li:hover a,#job-content .side-bar li.active a{
+    color: #fff;
+}
+
+#job-content .side-employment{
+    background-color: #fff;
+}
+
+#job-content .side-employment .search-bar{
+    margin-top: 30px;
+    margin-left: 25px;
+}
+#job-content .side-employment .search-bar .form-control{
+    width: calc(100% - 220px);
+}
+#job-content .side-employment .search-bar .input-group-text{
+    background: #fff;
+    color: #000;
+}
+
+#job-content .job-list{
+    margin-top: 30px;
+    margin-left: 20px;
+}
+#job-content .job-list a{
+    color: #000;
+}
+#no-data{
+    width: 100%;
+}
+#no-data span{
+    text-align: center;
+    display: none;
+}
+
+/*--------------------------------------------------------------
+# seeker-select-list
+--------------------------------------------------------------*/
+.select-list-wrap{
+    margin: 30px 19px;
+    display: flex;
+    justify-content: flex-start;
+}
+.select-list-wrap .select-list{
+    width: 100%; /*这里必须100%*/
+    display: flex;
+    flex-wrap: wrap; /*换行*/
+}
+.select-label{
+    width: 100px;
+    margin-top: 10px; /*这里设置了margin select-list-item也要设置 才能对齐*/
+    margin-left: 18px;
+}
+/*强制设置高度宽度*/
+.select-list-item{
+    flex: 1;
+    width: 12.5%;
+    min-width: 12.5%;
+    max-width: 12.5%;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.select-list-item span:hover{
+    cursor: pointer;
+}
+.select-list-item span{
+    font-size: 15px;
+    padding: 5px 8px;
+}
+.select-list .active span{
+    color: #007bff;
+    border: 1px solid #007bff;
+    border-radius: 15px;
+}
+.select-list .select-list-item a{
+    text-decoration: none;
+    color: #000;
+}
+
+/*--------------------------------------------------------------
+# seeker-footer
+--------------------------------------------------------------*/
+#job-footer .container{
+    height: 100px;
+    background-color: #FFF;
+}

@@ -1,0 +1,119 @@
+{% extends 'seeker/base_job.html' %}
+{% block head_exts %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/seeker_job_detail.css') }}">
+    <script src="{{ url_for('static',filename='js/seeker_index.js') }}"></script>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .box1 {
+            margin: 100px auto;
+        }
+
+        .box2 {
+            margin: 100px auto;
+        }
+
+        .box3 {
+            margin: 100px auto;
+        }
+    </style>
+    <script>
+        $(function () {
+            // var v = $("input[name='category']:checked").val();
+            // console.log(v);
+            var category = "全部"
+            var type = "不限"
+            var workplace = "全部"
+            $(".box1 :radio").on("click", get_category);
+            $(".box2 :radio").on("click", get_type);
+            $(".box3 :radio").on("click", get_workplace);
+            get_request()
+            {#console.log("ajax status " + aj.status);#}
+
+            function get_category() {
+                category = $(this).val()
+                get_request()
+            }
+
+            function get_type() {
+                type = $(this).val()
+                get_request();
+            }
+
+            function get_workplace() {
+                workplace = $(this).val();
+                get_request();
+            }
+
+            function get_request() {
+                $.ajax({
+                    url: '/seeker/test_radio/',// 跳转到 action
+                    data: {
+                        "category": category,
+                        "type": type,
+                        "workplace": workplace,
+                    },
+                    type: 'post',
+                    cache: false,
+                    dataType: 'json',
+                    success: function (data, status) {
+                        {#status : success#}
+                        console.log("status " + status)
+                        console.log("data" + data);
+                    },
+                    error: function (data, status) {
+
+                    }
+                });}
+        })
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="box1">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-secondary active">
+                        <input type="radio" name="category" checked value="研发"> 研发
+                    </label>
+                    <label class="btn btn-secondary">
+                        <input type="radio" name="category" value="运营"> 运营
+                    </label>
+                    <label class="btn btn-secondary">
+                        <input type="radio" name="category" value="教学"> 教学
+                    </label>
+                </div>
+            </div>
+            <div class="box2">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-secondary active">
+                        <input type="radio" name="type" checked value="不限"> 不限
+                    </label>
+                    <label class="btn btn-secondary">
+                        <input type="radio" name="type" value="全职"> 全职
+                    </label>
+                    <label class="btn btn-secondary">
+                        <input type="radio" name="type" value="实习"> 实习
+                    </label>
+                </div>
+            </div>
+            <div class="box3">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-secondary active">
+                        <input type="radio" name="category" checked value="北京"> 北京
+                    </label>
+                    <label class="btn btn-secondary">
+                        <input type="radio" name="category" value="上海"> 上海
+                    </label>
+                    <label class="btn btn-secondary">
+                        <input type="radio" name="category" value="南京"> 南京
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

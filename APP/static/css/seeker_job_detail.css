@@ -1,0 +1,74 @@
+.flex {
+    display: flex;
+}
+/*--------------------------------------------------------------
+# seeker-job-detail
+--------------------------------------------------------------*/
+
+.devider{
+    height: 3px;
+}
+#job-detail-container {
+    background-color: #F5F5F5;
+}
+#job-detail-container .placeholder{
+    height: 40px;
+}
+
+.job-detail-wrap{
+    background-color: white;
+}
+.title-wrap{
+    width: 15%;
+    padding: 10px 20px;
+    background-color: #007bff;
+    text-align: center;
+}
+.title-wrap span{
+    color: white;
+    font-size: 25px;
+}
+
+.job-title-wrap{
+    margin-top: 50px;
+}
+.job-title-wrap .job-title span{
+    font-size: 25px;
+    color: #000;
+}
+.job-title-wrap .job-city{
+    margin-top: 12px;
+}
+.job-content {
+    padding-top: 10px;
+}
+
+.job-detail-wrap h4{
+    border-left: 4px solid #007bff;
+    font-size: 18px;
+    padding-left: 6px;
+    margin: 20px 10px;
+}
+
+.job-content .content-item:nth-child(n+2){
+    margin-top: 30px;
+}
+.job-content .content-item ul li{
+    line-height: 30px;
+}
+
+
+.contact{
+    margin-top: 30px;
+}
+.contact a{
+    margin-left: 20px;
+}
+.share img{
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
+}
+.share span{
+    font-size: 15px;
+}

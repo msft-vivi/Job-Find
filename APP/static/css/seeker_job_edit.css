@@ -1,0 +1,115 @@
+.flex {
+    display: flex;
+}
+.prompt{
+    font-size: 20px;
+    margin-left: 38px;
+    color: red;
+}
+.title{
+    font-size: 18px;
+    color: #000;
+    margin-left: 5px;
+    margin-bottom: 2px;
+}
+.form-control{
+    margin-left: 55px;
+    margin-top: 10px;
+}
+/*--------------------------------------------------------------
+# seeker-job-detail
+--------------------------------------------------------------*/
+
+.devider{
+    height: 3px;
+}
+#job-edit-container {
+    background-color: #F5F5F5;
+}
+#job-edit-container .placeholder{
+    height: 40px;
+}
+
+.job-edit-wrap{
+    background-color: white;
+}
+.title-wrap{
+    width: 15%;
+    padding: 10px 20px;
+    margin-left: 35px;
+    background-color: #007bff;
+    text-align: center;
+}
+.title-wrap span{
+    color: white;
+    font-size: 25px;
+}
+
+.job-title-wrap{
+    margin-left: 40px;
+    margin-top: 30px;
+}
+.job-title-wrap .job-title span{
+    font-size: 21px;
+    color: #000;
+}
+.job-title-wrap .job-city{
+    margin-top: 12px;
+}
+
+/*--------------------------------------------------------------
+# wrap-padding
+--------------------------------------------------------------*/
+.name-wrap,.phone-wrap,.email-wrap,.idcard-wrap{
+    margin-top: 30px;
+}
+/*--------------------------------------------------------------
+# resume-padding
+--------------------------------------------------------------*/
+.resume-wrap input.form-control{
+    width: 50%;
+}
+/*--------------------------------------------------------------
+# name-padding
+--------------------------------------------------------------*/
+.name-wrap input.form-control{
+    width: 50%;
+}
+
+/*--------------------------------------------------------------
+# email-wrap
+--------------------------------------------------------------*/
+.email-wrap input.form-control{
+    width: 50%;
+}
+
+/*--------------------------------------------------------------
+# phone-wrap
+--------------------------------------------------------------*/
+.phone-wrap span.form-control{
+    width: 13%;
+}
+.phone-wrap input.form-control{
+    width: 35%;
+}
+.phone-wrap span{
+    text-align: center;
+}
+
+/*--------------------------------------------------------------
+# idcard-wrap
+--------------------------------------------------------------*/
+.idcard-wrap button.form-control{
+    width: 100%; /* 注意和span区分，100%指的是占据父容器的比例*/
+}
+.idcard-wrap input.form-control{
+    width: 35%;
+}
+.idcard-wrap .idcard{
+    margin-left: 10px;
+    width: 100%;
+}
+.idcard-wrap .idcard input.form-control{
+    width: 42%;
+}
+
