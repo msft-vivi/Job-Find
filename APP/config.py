@@ -39,11 +39,11 @@ class DevelopConfig(Config):
 	db_info = {
 		"ENGINE":"mysql",
 		"DRIVER":"pymysql",
-		"HOST":"47.99.198.164",
+		"HOST":"127.0.0.1",
 		"PORT":"3306",
 		"DATABASE":"job_find",
 		"USERNAME":"root",
-		"PASSWORD":"zw12345"
+		"PASSWORD":"12345"
 	}
 
 	SQLALCHEMY_DATABASE_URI = get_db_uri(db_info)

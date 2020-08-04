@@ -8,6 +8,15 @@
 然后再执行迁移命令就会成功。
 * [参考链接](https://blog.csdn.net/weixin_30770783/article/details/98003451?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task)
 
+### 运行
+* 初始化/更新数据库
+    * python manage.py db init
+    * python manage.py db upgrade
+    * python manage.py db migrate
+    * 如果已经存在数据库，则不需要执行init
+* 运行网站
+    * python manage.py runserver --threaded [-h -p]
+    
 ### 注意
 * js中的全局变量放到js的入口函数内部，尤其是与dom元素有关的变量必须放入
 * .val() 是 jQuery中的方法，.value是原生的方法，jQuery方式选中元素不能用value
