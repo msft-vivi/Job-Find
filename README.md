@@ -1,3 +1,7 @@
+### 项目简介
+ 本项目采用BootStrap、HTML5、CSS3、Jquery作为前端技术，Mysql作为数据库，Flask及其插件用于后端，采用了MVC架构实现整个网页，仿照Bytedance实习生招聘网站，实现了一个界面美观的招聘网站。网站包括求职者、企业，管理员三端，其中着重实现了求职者
+ 端，企业端。通过分表形式区分求职者和企业。
+ 
 ### 用户区分
 * 0 表示求职者
 * 1 表示企业用户
@@ -63,7 +67,11 @@
 * read_resume 制作分页
 * 公司没有编辑介绍时候，job_detail位置显示为none
 
+
 ### Reference
 * [表单验证正则表达式](https://blog.csdn.net/tp851716/article/details/43451247?utm_source=copy)
 * [改变SVG颜色](https://stackoverflow.com/questions/22252472/how-to-change-the-color-of-an-svg-element)
 * [flask url_for 获取绝对路径](https://zhuanlan.zhihu.com/p/107978600)
+
+### 简单展示
+* ![image](./img/index.png)
