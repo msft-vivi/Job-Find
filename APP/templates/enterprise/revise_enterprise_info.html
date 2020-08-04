@@ -1,0 +1,77 @@
+{% extends 'enterprise/base_enterprise.html' %}
+{% block head_exts %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/enterprise_revise.css') }}">
+{% endblock %}
+{% block content %}
+    <sectio id="revise">
+        <div class="placeholder"></div>
+        <div class="container revise-wrap">
+            <form action="{{ url_for('enterprise.revise_enterprise_info') }}" method="post" name="confirmationForm" id="confirmationForm">
+                <div class="basic-info-wrap">
+                <div class="width-wrap flex justify-content-start">
+                    <div>
+                        <span class="input-group-text">姓名</span>
+                    </div>
+                    {% if enterprise.username %}
+                        <input type="text" class="form-control" autofocus value="{{ enterprise.username }}" name="username">
+                    {% else %}
+                        <input type="text" class="form-control" autofocus placeholder="请输入用户名" name="username">
+                    {% endif %}
+                </div>
+                <div class="width-wrap flex justify-content-start">
+                    <div>
+                        <span class="input-group-text">手机</span>
+                    </div>
+                    {% if enterprise.phone %}
+                        <input type="text" class="form-control" value="{{ enterprise.phone }}" name="enterprise_phone">
+                    {% else %}
+                        <input type="text" class="form-control" placeholder="请输入手机号" name="enterprise_phone">
+                    {% endif %}
+
+                </div>
+                <div class="width-wrap flex justify-content-start">
+                    <div>
+                        <span class="input-group-text">邮箱</span>
+                    </div>
+                    {% if enterprise.email %}
+                        <input type="text" class="form-control" value="{{ enterprise.email }}" name="enterprise_email">
+                    {% else %}
+                        <input type="text" class="form-control" placeholder="请输入常用邮箱" name="enterprise_email">
+                    {% endif %}
+
+                </div>
+                <div class="width-wrap flex justify-content-start">
+                    <div>
+                        <span class="input-group-text">企业名</span>
+                    </div>
+                    {% if enterprise.enterprise_name %}
+                        <input type="text" class="form-control" value="{{ enterprise.enterprise_name }}" name="enterprise_name">
+                    {% else %}
+                        <input type="text" class="form-control" placeholder="请输入企业名" name="enterprise_name">
+                    {% endif %}
+
+                </div>
+                <div class="width-wrap">
+                    <div>
+                        <span class="input-group-text">企业描述</span>
+                    </div>
+                    {% if enterprise.enterprise_desc %}
+                        <textarea name="enterprise_desc" id="" cols="30" rows="13" class="form-control" form="confirmationForm">{{ enterprise.enterprise_desc }}</textarea>
+                    {% else %}
+                        <textarea name="enterprise_desc" id="" cols="30" rows="13" class="form-control" placeholder="请输入企业描述" form="confirmationForm"></textarea>
+                    {% endif %}
+                </div>
+                <div class="width-wrap">
+                    <div class="basic-info-item">
+                        <button class="btn btn-primary" type="submit" id="revise-btn">修改</button>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+        <div class="placeholder"></div>
+    </sectio>
+{% endblock %}
+
+
+

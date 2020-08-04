@@ -1,0 +1,48 @@
+/*--------------------------------------------------------------
+# enterprise-read-resume
+--------------------------------------------------------------*/
+.flex{
+    display: flex;
+}
+
+#resume-wrap-container {
+    /*width: 500px;*/
+}
+#resume-wrap-container .placeholder{
+    height: 40px;
+}
+#resume-wrap-container .container .resume-list-item{
+    background-color: #fff;
+}
+#resume-wrap-container .container{
+    width: 60%;
+}
+#resume-wrap-container .resume-list-item{
+    padding: 30px 15px;
+}
+#resume-wrap-container .resume-list-item .job-title{
+    font-size: 18px;
+}
+#resume-wrap-container .resume-list-item .status{
+    font-size: 12px;
+    margin-left: 10px;
+}
+#resume-wrap-container .resume-list-item .job-info{
+    margin-top: 20px;
+    font-size: 12px;
+}
+#resume-wrap-container .resume-list-item img:nth-child(n+2){
+    margin-left: 10px;
+}
+#resume-wrap-container .resume-list-item .revise-resume{
+    margin-right: 15px;
+    font-size: 13px;
+    color: #fff;
+    cursor: pointer;
+}
+#resume-wrap-container .resume-list-item:nth-child(n+2){
+    margin-top: 15px;
+}
+#resume-wrap-container .no-data{
+
+}

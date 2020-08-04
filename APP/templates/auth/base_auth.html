@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -19,7 +19,14 @@
     <script src="{{ url_for('static',filename='lib/js/popper-1.6.1.js') }}"></script>
     <script src="{{ url_for('static',filename='lib/js/bootstrap-4.4.1.min.js') }}"></script>
     <script src="{{ url_for('static',filename='js/base.js') }}"></script>
-
+    <script>
+        $(function () {
+            $(".auth a").on("click", function () {
+                $(".auth").removeClass("active");
+                $(this).parent(".nav-item").addClass("active");
+            })
+        })
+    </script>
     {% block head_exts %}{% endblock %}
     <title> - {% block title %} {% endblock %}</title>
 
@@ -29,8 +36,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="{{ url_for('static',filename='icons/bootstrap.svg') }}" alt="" title="Bootstrap"
-                     style="color: #9C27B0">
+                <img  src="{{ url_for('static',filename='icons/bootstrap.svg') }}" alt="" title="Bootstrap">
             </a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -40,11 +46,10 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-lg-5 pl-lg-5 brand-ul">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ url_for('seeker.index') }}"><span>校园招聘</span><span class="sr-only">(current)</span></a>
-                    </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><span>实习生招聘</span></a>
+                        <a class="nav-link" href="{{ url_for('seeker.index') }}">
+                            <span>校园招聘</span>
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><span>了解我们</span></a>
@@ -52,23 +57,23 @@
                 </ul>
                 <ul class="navbar-nav ml-auto auth-ul">
                     {% if not g.user %}
-                        <li class="nav-item active">
+                        <li class="nav-item auth active login">
                             <a href="{{ url_for('auth.login') }}"><span>登录</span></a>
                         </li>
-                        <li class="nav-item active">
+                        <li class="nav-item auth">
                             <a class="text-muted disabled" href="#"><span>/</span></a>
                         </li>
-                        <li class="nav-item register">
+                        <li class="nav-item auth register">
                             <a href="{{ url_for('auth.register') }}"><span>注册</span></a>
                         </li>
                     {% else %}
-                        <li class="nav-item">
+                        <li class="nav-item auth">
                             <a href="#"><span>{{ g.user.username }}</span></a>
                         </li>
-                        <li class="nav-item active">
+                        <li class="nav-item auth">
                             <a class="text-muted disabled" href="#"><span>/</span></a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item auth">
                             <a href="{{ url_for('auth.logout') }}"><span>退出</span></a>
                         </li>
                     {% endif %}
@@ -86,9 +91,7 @@
 
 {% endblock %}
 <section class="content">
-    {% for message in get_flashed_messages() %}
-        <div class="flash">{{ message }}</div>
-    {% endfor %}
+
 </section>
 {% block footer %}
 

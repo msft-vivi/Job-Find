@@ -1,0 +1,288 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.flex {
+    display: flex;
+}
+
+.prompt {
+    font-size: 20px;
+    color: red;
+}
+
+.title {
+    font-size: 18px;
+    color: #000;
+    margin-left: 5px;
+    margin-bottom: 2px;
+}
+
+
+.input-format{
+    width: 50%;
+}
+/*--------------------------------------------------------------
+# seeker-job-detail
+--------------------------------------------------------------*/
+
+.devider {
+    height: 3px;
+}
+
+#job-edit-container {
+    background-color: #F5F5F5;
+}
+
+#job-edit-container .placeholder {
+    height: 40px;
+}
+
+.job-edit-wrap {
+    background-color: white;
+}
+
+.title-wrap {
+    width: 15%;
+    padding: 10px 20px;
+    margin-left: 35px;
+    background-color: #007bff;
+    text-align: center;
+}
+
+.title-wrap span {
+    color: white;
+    font-size: 25px;
+}
+
+.job-title-wrap {
+    margin-left: 40px;
+    margin-top: 30px;
+}
+
+.job-title-wrap .job-title span:nth-child(1) {
+    font-size: 21px;
+    color: #000;
+}
+
+.job-title-wrap .job-title span:nth-child(2) {
+    font-size: 16px;
+    margin-left: 15px;
+}
+
+.job-title-wrap .job-city {
+    margin-top: 12px;
+}
+
+.input-format{
+    margin-top: 10px;
+}
+/*--------------------------------------------------------------
+# wrap-padding
+--------------------------------------------------------------*/
+.resume-wrap,.name-wrap, .phone-wrap, .email-wrap, .idcard-wrap,
+.sex-wrap,.birthday-wrap,.education-wrap,.internship-wrap,.campus-wrap,.competition-wrap,.submit-btn{
+    margin-top: 30px;
+    margin-left: 55px;
+}
+
+/*--------------------------------------------------------------
+# resume-padding
+--------------------------------------------------------------*/
+.resume-wrap .input-format button{
+    margin-bottom: 5px;
+    padding: 5px 40px;
+}
+.resume-wrap .input-format div{
+    font-size: 14px;
+}
+
+/*--------------------------------------------------------------
+# name-padding
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+# email-wrap
+--------------------------------------------------------------*/
+.email-wrap{
+
+}
+
+/*--------------------------------------------------------------
+# phone-wrap
+--------------------------------------------------------------*/
+
+.phone-wrap span {
+    text-align: center;
+}
+
+.phone-wrap .phone-number{
+    width: 100%;
+}
+
+.phone-wrap .phone-number input.form-control {
+    margin-left: 10px;
+    width: calc(100% - 10px);
+}
+
+.phone-wrap #selected_text {
+    width: 150px;
+    text-align: left;
+}
+
+/*--------------------------------------------------------------
+# idcard-wrap
+--------------------------------------------------------------*/
+.idcard-wrap button.form-control {
+    width: 100%; /* 注意和span区分，100%指的是占据父容器的比例*/
+}
+
+
+.idcard-wrap .idcard {
+    width: 100%;
+}
+/*下拉选择菜单*/
+.dropdown-item.selected {
+    color: #007bff;
+}
+
+.idcard-wrap #selected_text {
+    width: 150px;
+    text-align: left;
+}
+
+.idcard-wrap #selected_text span.dropdown-toggle {
+    position: absolute;
+    right: 10px;
+}
+
+.idcard-wrap .idcard input.form-control {
+    margin-left: 10px;
+    width: calc(100% - 10px);
+}
+
+/*--------------------------------------------------------------
+# sex-wrap
+--------------------------------------------------------------*/
+.sex-wrap input.form-control {
+    width: 50%;
+}
+
+.sex-wrap div span{
+    margin-left: 10px;
+}
+.sex-wrap div #radio2{
+    margin-left: 15px;
+}
+.sex-wrap input[type='radio']:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -4px;
+    left: -1px;
+    position: relative;
+    background-color: white;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 1px solid darkgray;
+}
+
+.sex-wrap input[type='radio']:checked:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -4px;
+    left: -1px;
+    position: relative;
+    background-color: white;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 5.5px solid #007bff;
+}
+
+/*--------------------------------------------------------------
+# education-wrap
+--------------------------------------------------------------*/
+.education-wrap .prompt{
+    color: red;
+}
+.education-list-item .education-list-item-one,.education-list-item .education-list-item-two{
+    width: 50%;
+    margin-left: 30px;
+}
+.education-list-item .education-list-item-single,.education-list-item .education-list-item-title{
+    margin-left: 30px;
+}
+
+.education-list-item .education-list-item-one .dropdown>button{
+    width: 100%;
+}
+
+.education-list-item-one .prompt-value,.education-list-item-two .prompt-value,.education-list-item-title .prompt-value{
+    margin-left: 5px;
+}
+
+/* 增加education-wrap 上下边框*/
+.education-list-item:nth-child(1){
+    padding-top: 35px;
+}
+.education-list-item:nth-last-child(1){
+    padding-bottom: 35px;
+}
+
+.education-list-item #selected_text{
+    text-align: left;
+}
+.education-list-item #selected_text span{
+    margin-left: 6px;
+}
+.education-list-item #selected_text span.dropdown-toggle{
+    position: absolute;
+    right: 10px;
+}
+.add-btn-wrap{
+    margin-left: 55px;
+}
+.add-btn-wrap .add-education{
+    /*padding: 5px 20px;*/
+}
+/*--------------------------------------------------------------
+# internship-wrap
+--------------------------------------------------------------*/
+.internship .prompt{
+    color: red;
+}
+.internship-list-item .internship-list-item-one,.internship-list-item .internship-list-item-two{
+    width: 50%;
+    margin-left: 30px;
+}
+.internship-list-item .internship-list-item-single,.internship-list-item .internship-list-item-title{
+    margin-left: 30px;
+}
+
+.internship-list-item-one .prompt-value,.internship-list-item-two .prompt-value,.internship-list-item-title .prompt-value{
+    margin-left: 5px;
+}
+
+/* 增加internship-wrap 上下边框*/
+.internship-list-item:nth-child(1){
+    padding-top: 35px;
+}
+.internship-list-item:nth-last-child(1){
+    padding-bottom: 35px;
+}
+
+/*--------------------------------------------------------------
+# internship-wrap
+--------------------------------------------------------------*/
+/*submit-btn*/
+.submit-btn{
+
+}
+.submit-btn .btn{
+    padding: 5px 30px;
+    margin-bottom: 30px;
+}

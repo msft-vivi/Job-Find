@@ -20,7 +20,7 @@ bp_auth = Blueprint("auth",__name__,url_prefix="/auth")
 def load_logged_in_user():
     """If a user id is stored in the session, load the user object from
     the database into ``g.user``."""
-
+    print("trigger load_logged_in_user")
     user_id = session.get("user_id")
     usertype = session.get("usertype")
     if user_id is None:
@@ -40,8 +40,6 @@ def login():
         username = request.form.get('username')
         password = request.form.get('password')
         usertype = int(request.form.get("usertype","0"))
-        print(usertype)
-        # print("{} : {}".format(username,password))
         error = None
         if usertype == 0:
             user = Seeker.query.filter_by(username=username).first()
@@ -53,19 +51,14 @@ def login():
             error = "Incorrect username."
         elif not user.check_password(password):
             error = "Incorrect password."
-
         if error is None:
-            # store the user id in a new session and return to the index
             session.clear()
             session["user_id"] = user.id
             session['usertype'] = usertype
-
             if usertype == 0:
                  return redirect(url_for("seeker.index"))
             else:
-                return "企业用户登录成功"
-
-            # return redirect(url_for("blog.home"))
+                return redirect(url_for("enterprise.index"))
 
         flash(error)
     return render_template('auth/login.html')
@@ -125,3 +118,28 @@ def logout():
     print("herere")
     return redirect(url_for("seeker.index"))
 
+
+@bp_auth.route("/current_page_login/",methods=['GET','POST'])
+def current_page_login():
+
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        job_id = request.form.get("job_id")
+        error = None
+        user = Seeker.query.filter_by(username=username).first()
+
+        if user is None:
+            error = "Incorrect username."
+        elif not user.check_password(password):
+            error = "Incorrect password."
+
+        if error is None:
+            # store the user id in a new session and return to the index
+            session.clear()
+            session["user_id"] = user.id
+            session['usertype'] = 0
+            return redirect(url_for("seeker.job_edit",ind=job_id))
+
+        flash(error)
+    return redirect(request.referrer) # 返回当前页面

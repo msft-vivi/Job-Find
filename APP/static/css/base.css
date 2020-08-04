@@ -1,46 +1,99 @@
 /*--------------------------------------------------------------
 # common css
+# 精髓之处：总体分为 header,content,footer
+# footer、header背景颜色覆盖body,html的颜色
 --------------------------------------------------------------*/
+html, body{
+    background-color: #f5f5f5; /*保证内容部分的背景色充满全屏（即使内容不足）*/
+    height:100%;
+    margin:0;
+    padding: 0;
+}
 
- /*浅蓝#058FFF*/
- /*深蓝#00A8FF*/
+footer {
+    height:100px;
+    min-height: 100px; /*注意这个必须有，不然不起作用*/
+    margin-top:auto;
+    background-color: #fff;
+}
+header{
+    background-color: #fff;
+}
+
+/* Trick */
+body{
+  display:flex;
+  flex-direction:column;
+}
+
+
+
+
+
+/*浅蓝#058FFF*/
+/*深蓝#00A8FF*/
 /*primary #007bff*/
 .flex {
     display: flex;
 }
-#job-header{
+
+#job-header {
 
 }
-.navbar .navbar-brand img{
+
+.navbar .navbar-brand img {
     width: 40px;
     height: 40px;
 }
+
 /*navbar 中间标题*/
-.navbar .brand-ul .nav-item  span{
+.navbar .brand-ul .nav-item span {
     font-size: 18px;
 }
 
+img.auth-logo{
+    width: 72px;
+    height: 72px;
+}
 /* navbar 登录注册按钮*/
-.navbar .auth-ul .nav-item span{
+.navbar .auth-ul .nav-item span {
     font-size: 18px;
 }
 
-.navbar .brand-ul .nav-item  a:hover{
+.navbar .brand-ul .nav-item a:hover {
     color: #007bff;
 }
-.navbar .brand-ul .active a span{
+
+.navbar  .active a span {
     color: #007bff;
 }
-.navbar .auth-ul a{
+
+.navbar .auth-ul a {
     text-decoration: none;
     font-size: 18px;
     color: #000;
 }
-.navbar .auth-ul a:hover{
+
+.navbar .auth-ul a:hover {
     color: #007bff;
 }
-.navbar .auth-ul li{
+
+.navbar .auth-ul li {
     padding: 10px;
+}
+
+.navbar .auth-ul .dropdown a.prompt {
+    text-decoration: none;
+    color: #000;
+    margin: 0px 10px;
+}
+
+.navbar .auth-ul .dropdown a:hover {
+    color: #007bff;
+}
+
+.navbar .auth-ul .dropdown-menu a {
+    font-size: 15px;
 }
 
 /*登录注册按钮*/
@@ -49,7 +102,7 @@
 # auth
 --------------------------------------------------------------*/
 
-.auth-container .container  {
+.auth-container .container {
     max-width: 330px;
     margin-top: 30px;
     /*background: red;*/
@@ -57,37 +110,40 @@
 
 
 .auth-body {
-     background-color: #f5f5f5;
+    background-color: #f5f5f5;
 }
 
 .auth-container .container .form-signin {
-      width: 100%;
-      max-width: 330px;
-      padding: 15px;
-      margin: auto;
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
 }
 
-.auth-container .container .form-signin .checkbox{
+.auth-container .container .form-signin .checkbox {
     font-weight: 400;
 }
 
-.radio-wrap{
+.radio-wrap {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
-.radio-wrap .radio{
+
+.radio-wrap .radio {
     padding: 5px 10px;
 }
+
 /*--------------------------------------------------------------
 # auth- register
 --------------------------------------------------------------*/
-.nav li{
+.nav li {
     width: 50%;
     text-align: center;
 }
-.nav li a{
+
+.nav li a {
     color: #000;
 }
 
@@ -96,21 +152,15 @@
 # seeker base
 --------------------------------------------------------------*/
 
-#job-header .navbar .container{
+#job-header .navbar .container {
     height: 60px;
 }
 
 
-.flash {
-  margin: 1em 0;
-  padding: 1em;
-  background: #cae6f6;
-  border: 1px solid #377ba8;
-}
-
-
-
-#job-footer{
-    height: 100px;
-}
+/*.flash {*/
+/*    margin: 1em 0;*/
+/*    padding: 1em;*/
+/*    background: #cae6f6;*/
+/*    border: 1px solid #377ba8;*/
+/*}*/
 

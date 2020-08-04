@@ -1,4 +1,4 @@
-{% extends 'seeker/base_job.html' %}
+ {% extends 'seeker/base_job.html' %}
 
 {% block head_exts %}
     <link rel="stylesheet" href="{{ url_for('static',filename='css/seeker_index.css') }}">
@@ -9,6 +9,7 @@
             page_all = 1; // 设置默认值
             page_size = 10; //默认页面大小
             page_cur = 1; // 默认当前页面
+
             empty_page = false;
             pagination_dom = document.getElementsByClassName("pagination")[0];// 获取 ul
 
@@ -155,7 +156,6 @@
 {% endblock %}
 
 {% block content %}
-
     <section id="job_carousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -190,18 +190,18 @@
         <div class="container">
             <div class="row">
                 <!--side bar-->
-                <div class="side-bar col-lg-3 flex justify-content-center">
-                    <ul>
-                        <li class="active"><a href="">招聘职位</a></li>
-                        <li><a href="">招聘流程</a></li>
-                        <li><a href="">空中宣讲</a></li>
-                        <li><a href="">视频展示</a></li>
-                        <li><a href="">答疑专区</a></li>
-                        <li><a href="">了解更多</a></li>
-                    </ul>
-                </div>
+{#                <div class="side-bar col-lg-3 flex justify-content-center">#}
+{#                    <ul>#}
+{#                        <li class="active"><a href="">招聘职位</a></li>#}
+{#                        <li><a href="">招聘流程</a></li>#}
+{#                        <li><a href="">空中宣讲</a></li>#}
+{#                        <li><a href="">视频展示</a></li>#}
+{#                        <li><a href="">答疑专区</a></li>#}
+{#                        <li><a href="">了解更多</a></li>#}
+{#                    </ul>#}
+{#                </div>#}
                 <!--side employment-->
-                <div class="side-employment col-lg-9">
+                <div class="side-employment col-lg-12">
                     <div class="search-bar flex justify-content-start">
                         <div>
                             <span class="input-group-text" id="inputGroup-sizing-default">校园招聘</span>
@@ -325,6 +325,3 @@
     </section>
 {% endblock %}
 
-{% block footer %}
-
-{% endblock %}

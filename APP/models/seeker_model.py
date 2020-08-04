@@ -17,6 +17,7 @@ class Seeker(BaseModel):
     _password = db.Column(db.String(256))
     phone = db.Column(db.String(32), unique=True)
     is_delete = db.Column(db.Boolean, default=False)
+    email = db.Column(db.String(64))
     # is_verify = db.Column(db.Boolean, default=False)
 
     @property

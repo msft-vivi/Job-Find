@@ -1,0 +1,47 @@
+/*--------------------------------------------------------------
+# seeker-my-post
+--------------------------------------------------------------*/
+.flex{
+    display: flex;
+}
+#post-wrap-container {
+
+}
+#post-wrap-container .placeholder{
+    height: 40px;
+}
+#post-wrap-container .container .post-list-item{
+    background-color: #fff;
+}
+#post-wrap-container .container{
+    width: 60%;
+}
+#post-wrap-container .post-list-item{
+    padding: 30px 15px;
+}
+#post-wrap-container .post-list-item .job-title{
+    font-size: 18px;
+}
+#post-wrap-container .post-list-item .status{
+    font-size: 12px;
+    margin-left: 10px;
+}
+#post-wrap-container .post-list-item .job-info{
+    margin-top: 20px;
+    font-size: 12px;
+}
+#post-wrap-container .post-list-item img:nth-child(n+2){
+    margin-left: 10px;
+}
+#post-wrap-container .post-list-item .revise-resume{
+    margin-right: 15px;
+    font-size: 13px;
+    color: #fff;
+    cursor: pointer;
+}
+#post-wrap-container .post-list-item:nth-child(n+2){
+    margin-top: 15px;
+}
+#post-wrap-container .no-data{
+
+}

@@ -1,0 +1,145 @@
+/*--------------------------------------------------------------
+# enterprise common css
+--------------------------------------------------------------*/
+html,body{
+    padding: 0px;
+    margin: 0px;
+}
+.flex{
+    display: flex;
+}
+.divider{
+    height: 3px;
+}
+
+p{
+    line-height: 25px;
+}
+#resume-wrap-container{
+    background-color: #f5f5f5;
+}
+
+#resume-wrap-container .placeholder{
+    height: 40px;
+}
+
+#resume-wrap-container .resume-wrap-card{
+    background-color: #fff;
+    padding-bottom: 20px;
+}
+
+h4{
+    font-size: 20px;
+}
+/*--------------------------------------------------------------
+# enterprise title-wrap / job-title-wrap
+--------------------------------------------------------------*/
+.title-wrap{
+    width: 15%;
+    padding: 10px 20px;
+    background-color: #007bff;
+    text-align: center;
+}
+/*统一wrap*/
+.title-wrap,.job-title-wrap,.basic-info-wrap,.education-wrap,.internship-wrap,.campus-wrap,.competition-wrap,.btn-wrap{
+    margin:0px 50px;
+}
+.education-wrap,.internship-wrap,.campus-wrap,.competition-wrap,.btn-wrap{
+    margin-top: 25px;
+}
+.title-wrap span{
+    color: white;
+    font-size: 25px;
+}
+
+.job-title-wrap{
+    margin-top: 50px;
+}
+.job-title-wrap .job-title span:nth-child(1){
+    font-size: 25px;
+    color: #000;
+}
+.job-title-wrap .job-title span:nth-child(2){
+    font-size: 18px;
+    margin-left: 10px;
+}
+.job-title-wrap .job-city{
+    margin-top: 12px;
+}
+
+
+/*--------------------------------------------------------------
+# enterprise basic-info-wrap
+--------------------------------------------------------------*/
+.basic-info-wrap{
+    margin-top: 40px;
+}
+.basic-info-wrap .right{
+    margin-left: 50px;
+}
+
+.basic-info-wrap .basic-info-content{
+    margin-top: 15px;
+}
+.basic-info-wrap .basic-info-item{
+    margin: 5px 0px;
+}
+
+/*--------------------------------------------------------------
+# enterprise education-wrap
+--------------------------------------------------------------*/
+
+
+/*.education-list .education-list-item:nth-child(n+2){*/
+/*    margin: 10px 0px;*/
+/*}*/
+/*.education-wrap .education-list-item .school-wrap .school{*/
+/*    font-weight: bold;*/
+/*}*/
+/*.education-wrap .education-list-item .school-wrap span:nth-child(n+2){*/
+/*    margin: 0px 10px;*/
+/*}*/
+/*.education-wrap .education-list-item .other-wrap span:nth-child(n+2){*/
+/*    margin: 0px 10px;*/
+/*}*/
+
+/*--------------------------------------------------------------
+# enterprise competition-wrap
+--------------------------------------------------------------*/
+
+
+/*--------------------------------------------------------------
+# enterprise internship-wrap
+--------------------------------------------------------------*/
+.internship-wrap .internship-list-item:nth-child(n+2){
+    margin-top: 30px;
+}
+.internship-wrap .internship-list-item .location{
+   font-weight: bold;
+}
+.internship-wrap .internship-list-item .time{
+    margin: 0px 15px;
+}
+.internship-wrap .internship-list-item p{
+    margin-top: 5px;
+    max-height: 100px;
+    overflow: auto;
+}
+
+/*--------------------------------------------------------------
+# enterprise btn-wrap
+--------------------------------------------------------------*/
+
+.btn-wrap a{
+    margin-right: 10px;
+}
+
+pre{
+    white-space: pre-line;
+    font-size: 15px;
+    font-family: "微软雅黑";
+}
+
+.basic-info-wrap .basic-info-content{
+    font-family: "微软雅黑";
+}

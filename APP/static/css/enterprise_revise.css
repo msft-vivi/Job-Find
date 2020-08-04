@@ -1,0 +1,28 @@
+/*--------------------------------------------------------------
+# enterprise-revise
+--------------------------------------------------------------*/
+
+#revise .placeholder{
+    height: 40px;
+}
+
+#revise .container{
+    background-color: #fff;
+    padding: 20px 40px;
+    width: 70%;
+}
+
+
+#revise .width-wrap{
+    width: 50%;
+    margin: 30px 40px;
+}
+
+#revise-btn{
+    padding: 5px 20px;
+    border-radius: 15px;
+}
+
+textarea{
+    white-space: pre-line;
+}

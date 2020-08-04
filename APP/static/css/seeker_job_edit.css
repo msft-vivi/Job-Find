@@ -1,115 +1,228 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
 .flex {
     display: flex;
 }
-.prompt{
+
+.prompt {
     font-size: 20px;
-    margin-left: 38px;
     color: red;
 }
-.title{
+
+.title {
     font-size: 18px;
     color: #000;
     margin-left: 5px;
     margin-bottom: 2px;
 }
-.form-control{
-    margin-left: 55px;
-    margin-top: 10px;
+
+
+.input-format{
+    width: 50%;
 }
 /*--------------------------------------------------------------
 # seeker-job-detail
 --------------------------------------------------------------*/
 
-.devider{
+.devider {
     height: 3px;
 }
+
 #job-edit-container {
     background-color: #F5F5F5;
 }
-#job-edit-container .placeholder{
+
+#job-edit-container .placeholder {
     height: 40px;
 }
 
-.job-edit-wrap{
+.job-edit-wrap {
     background-color: white;
 }
-.title-wrap{
+
+.title-wrap {
     width: 15%;
     padding: 10px 20px;
     margin-left: 35px;
     background-color: #007bff;
     text-align: center;
 }
-.title-wrap span{
+
+.title-wrap span {
     color: white;
     font-size: 25px;
 }
 
-.job-title-wrap{
+.job-title-wrap {
     margin-left: 40px;
     margin-top: 30px;
 }
-.job-title-wrap .job-title span{
+
+.job-title-wrap .job-title span:nth-child(1) {
     font-size: 21px;
     color: #000;
 }
-.job-title-wrap .job-city{
+
+.job-title-wrap .job-title span:nth-child(2) {
+    font-size: 16px;
+    margin-left: 15px;
+}
+
+.job-title-wrap .job-city {
     margin-top: 12px;
 }
 
+.input-format{
+    margin-top: 10px;
+}
 /*--------------------------------------------------------------
 # wrap-padding
 --------------------------------------------------------------*/
-.name-wrap,.phone-wrap,.email-wrap,.idcard-wrap{
+.resume-wrap,.name-wrap, .phone-wrap, .email-wrap, .idcard-wrap,
+.sex-wrap,.birthday-wrap,.education-wrap,.internship-wrap,.campus-wrap,.competition-wrap,.submit-btn{
     margin-top: 30px;
+    margin-left: 55px;
 }
+
 /*--------------------------------------------------------------
 # resume-padding
 --------------------------------------------------------------*/
-.resume-wrap input.form-control{
-    width: 50%;
+.resume-wrap .input-format button{
+    margin-bottom: 5px;
+    padding: 5px 40px;
 }
+.resume-wrap .input-format div{
+    font-size: 14px;
+}
+
 /*--------------------------------------------------------------
 # name-padding
 --------------------------------------------------------------*/
-.name-wrap input.form-control{
-    width: 50%;
-}
 
 /*--------------------------------------------------------------
 # email-wrap
 --------------------------------------------------------------*/
-.email-wrap input.form-control{
-    width: 50%;
+.email-wrap{
+
 }
 
 /*--------------------------------------------------------------
 # phone-wrap
 --------------------------------------------------------------*/
-.phone-wrap span.form-control{
-    width: 13%;
-}
-.phone-wrap input.form-control{
-    width: 35%;
-}
-.phone-wrap span{
+
+.phone-wrap span {
     text-align: center;
+}
+
+.phone-wrap .phone-number{
+    width: 100%;
+}
+
+.phone-wrap .phone-number input.form-control {
+    margin-left: 10px;
+    width: calc(100% - 10px);
+}
+
+.phone-wrap #selected-phone-type {
+    width: 150px;
+    text-align: left;
 }
 
 /*--------------------------------------------------------------
 # idcard-wrap
 --------------------------------------------------------------*/
-.idcard-wrap button.form-control{
+.idcard-wrap button.form-control {
     width: 100%; /* 注意和span区分，100%指的是占据父容器的比例*/
 }
-.idcard-wrap input.form-control{
-    width: 35%;
-}
-.idcard-wrap .idcard{
-    margin-left: 10px;
+
+
+.idcard-wrap .idcard {
     width: 100%;
 }
-.idcard-wrap .idcard input.form-control{
-    width: 42%;
+/*下拉选择菜单*/
+.dropdown-item.selected {
+    color: #007bff;
 }
 
+.idcard-wrap #selected-idcard-type {
+    width: 150px;
+    text-align: left;
+}
+
+.idcard-wrap #selected-idcard-type span.dropdown-toggle {
+    position: absolute;
+    right: 10px;
+}
+
+.idcard-wrap .idcard input.form-control {
+    margin-left: 10px;
+    width: calc(100% - 10px);
+}
+
+/*--------------------------------------------------------------
+# sex-wrap
+--------------------------------------------------------------*/
+.sex-wrap input.form-control {
+    width: 50%;
+}
+
+.sex-wrap div span{
+    margin-left: 10px;
+}
+.sex-wrap div #radio2{
+    margin-left: 15px;
+}
+.sex-wrap input[type='radio']:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -4px;
+    left: -1px;
+    position: relative;
+    background-color: white;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 1px solid darkgray;
+}
+
+.sex-wrap input[type='radio']:checked:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -4px;
+    left: -1px;
+    position: relative;
+    background-color: white;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 5.5px solid #007bff;
+}
+
+/*--------------------------------------------------------------
+# education-wrap
+--------------------------------------------------------------*/
+
+
+/*--------------------------------------------------------------
+# internship-wrap
+--------------------------------------------------------------*/
+.internship .prompt{
+    color: red;
+}
+
+/*--------------------------------------------------------------
+# internship-wrap
+--------------------------------------------------------------*/
+/*submit-btn*/
+.submit-btn{
+
+}
+.submit-btn .btn{
+    padding: 5px 30px;
+    margin-bottom: 30px;
+}

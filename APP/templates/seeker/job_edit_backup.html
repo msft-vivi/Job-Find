@@ -1,0 +1,325 @@
+{% extends 'seeker/base_job.html' %}
+{% block head_exts %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/seeker_job_edit.css') }}">
+    <script src="{{ url_for('static',filename='js/seeker_job_edit.js') }}"></script>
+    <script>
+        $(function () {
+            // idcard-wrap 下拉框
+            $(".idcard-wrap .dropdown-item").on("click", function () {
+                $(this).addClass("selected");
+                $(this).siblings().removeClass("selected");
+                $(".idcard-wrap #selected_text span.value").text($(this).text());
+            })
+            // phone-wrap 下拉框
+            $(".phone-wrap .dropdown-item").on("click", function () {
+                $(this).addClass("selected");
+                $(this).siblings().removeClass("selected");
+                $(".phone-wrap #selected_text span.value").text($(this).text());
+            })
+            // education-wrap 学历
+            $(".education-wrap .education-list-item-one .dropdown-item").on("click", function () {
+                $(this).addClass("selected");
+                $(this).siblings().removeClass("selected");
+                $(".education-list-item-one #selected_text span.value").text($(this).text());
+            });
+            // education-wrap 学历类型
+            $(".education-wrap .education-list-item-two .dropdown-item").on("click", function () {
+                $(this).addClass("selected");
+                $(this).siblings().removeClass("selected");
+                $(".education-list-item-two #selected_text span.value").text($(this).text());
+            })
+            // 文件上传,利用触发器 实现
+            $("#upload").on("click", function () {
+                $("#file1").trigger("click");
+            })
+            //添加教育经历
+            $(".add-education").on("click", function () {
+                $(".education-wrap").append();
+            })
+        })
+    </script>
+{#    <style>#}
+{#        input[type="radio"]:checked + label {#}
+{#            color: red;#}
+{#        }#}
+{#    </style>#}
+{% endblock %}
+
+{% block content %}
+    <section id="job-edit-container">
+        <div class="placeholder"></div>
+        <div class="container">
+            <div class="job-edit-wrap col-12">
+                <form action="{{ url_for('enterprise.test') }}" method="post">
+                    <div class="job-card-wrap">
+                        <div class="title-wrap">
+                            <span>{{ job.job_category }}</span>
+                        </div>
+                        <div class="job-title-wrap">
+                            <!--category-->
+                            <div class="job-title">
+                                <span>{{ job.job_name }}</span><span class="text-muted">投递填写</span>
+                            </div>
+                            <div class="job-city">
+                                <img src="{{ url_for('static',filename='icons/alarm.svg') }}" alt="">
+                                <span class="value">{{ job.workplace }}</span>
+                                <img src="{{ url_for('static',filename='icons/alarm.svg') }}" alt=""
+                                     style="margin-left: 20px">
+                                <span class="value">{{ job.job_type }}</span>
+                            </div>
+                        </div>
+                        <hr class="devider">
+                        <div class="resume-wrap">
+                            <span class="prompt">*</span>
+                            <span class="title">简历上传</span>
+                            <div class="input-format">
+                                <input type="file" id="file1" style="display: none">
+                                <button type="button" class="btn btn-primary" id="upload">上传</button>
+                                <div class="text-muted">提示：不超过8MB，扩展名为pdf、doc、docx、ppt、pptx、png、jpg、jpeg</div>
+                            </div>
+                        </div>
+                        <div class="name-wrap">
+                            <span class="prompt">*</span>
+                            <span class="title">姓名</span>
+                            <div class="input-format">
+                                <input type="text" name="username" class="form-control" placeholder="请输入姓名">
+                            </div>
+                        </div>
+                        <div class="phone-wrap">
+                            <span class="prompt">*</span>
+                            <span class="title">手机号</span>
+                            <div class="input-format flex flex-row">
+                                <div class="dropdown">
+                                    <button type="button" class="form-control" id="selected_text"
+                                            data-toggle="dropdown">
+                                        <span class="value">+86 中国大陆</span>
+                                        <span class="dropdown-toggle"></span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <button type="button" class="dropdown-item selected">+852 中国香港</button>
+                                        <button type="button" class="dropdown-item">+853 中国澳门</button>
+                                        <button type="button" class="dropdown-item">+886 中国台湾</button>
+                                    </div>
+                                </div>
+                                <div class="phone-number">
+                                    <input type="text" name="phone" class="form-control" placeholder="请输入手机号码">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="email-wrap">
+                            <span class="prompt">*</span>
+                            <span class="title">常用邮箱</span>
+                            <div class="input-format">
+                                <input type="text" name="email" class="form-control" placeholder="请输入邮箱">
+                            </div>
+                        </div>
+                        <div class="idcard-wrap">
+                            <span class="prompt">*</span>
+                            <span class="title">个人证件</span>
+                            <div class="input-format flex flex-row">
+                                <div class="dropdown">
+                                    <button type="button" class="form-control" id="selected_text"
+                                            data-toggle="dropdown">
+                                        <span class="value">身份证</span>
+                                        <span class="dropdown-toggle"></span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <button type="button" class="dropdown-item selected">身份证</button>
+                                        <button type="button" class="dropdown-item">护照</button>
+                                        <button type="button" class="dropdown-item">香港身份证</button>
+                                        <button type="button" class="dropdown-item">台胞证</button>
+                                        <button type="button" class="dropdown-item">其它</button>
+                                    </div>
+                                </div>
+                                <div class="idcard">
+                                    <input type="text" name="idcard" class="form-control" placeholder="请输入证件号码">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sex-wrap">
+                            <span class="prompt">*</span>
+                            <span class="title">性别</span>
+                            <div class="input-format">
+                                <input type="radio" id="radio1" name="sex"><span>男</span>
+                                <input type="radio" id="radio2" name="sex"><span>女</span>
+                            </div>
+                        </div>
+                        <div class="birthday-wrap">
+                            <span class="prompt">*</span>
+                            <span class="title">出生日期</span>
+                            <div class="input-format">
+                                <input type="date" name="birthday" class="form-control" placeholder="请选择日期">
+                            </div>
+                        </div>
+                        <div class="education-wrap">
+                            <span class="prompt">*</span>
+                            <span class="title">教育经历</span>
+                            <div style="background-color: #F5F5F5">
+                                <div class="education-list-item input-format flex flex-row">
+                                    <div class="education-list-item-one">
+                                        <div class="flex  align-items-center">
+                                            <span class="prompt">*</span>
+                                            <div class="prompt-value">学历</div>
+                                        </div>
+                                        <div class="dropdown">
+                                            <input type="button" name="education_level" class="form-control dropdown-toggle"
+                                                   id="selected_text"
+                                                   data-toggle="dropdown" value="请选择学历">
+                                            <div class="dropdown-menu">
+                                                <button type="button" class="dropdown-item selected">专科</button>
+                                                <button type="button" class="dropdown-item">本科</button>
+                                                <button type="button" class="dropdown-item ">硕士</button>
+                                                <button type="button" class="dropdown-item">博士</button>
+                                                <button type="button" class="dropdown-item">其它</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="education-list-item-two">
+                                        <div class="flex  align-items-center">
+                                            <span class="prompt">*</span>
+                                            <div class="prompt-value">学历类型</div>
+                                        </div>
+                                        <div class="dropdown">
+                                            <input type="button" class="form-control" id="selected_text"
+                                                   data-toggle="dropdown" value="请选择学历类型" name="education_type">
+                                            {#                                                <span class="dropdown-toggle"></span>#}
+                                            <div class="dropdown-menu">
+                                                <button type="button" class="dropdown-item selected">统招全日制</button>
+                                                <button type="button" class="dropdown-item">统招非全日制</button>
+                                                <button type="button" class="dropdown-item ">海外及港澳台</button>
+                                                <button type="button" class="dropdown-item">自考</button>
+                                                <button type="button" class="dropdown-item">其它</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="education-list-item input-format flex flex-row">
+                                    <div class="education-list-item-one">
+                                        <div class="flex  align-items-center">
+                                            <span class="prompt">*</span>
+                                            <div class="prompt-value">开始日期</div>
+                                        </div>
+                                        <input type="date" class="form-control" name="education_start">
+                                    </div>
+                                    <div class="education-list-item-two">
+                                        <div class="flex  align-items-center">
+                                            <span class="prompt">*</span>
+                                            <div class="prompt-value">毕业日期</div>
+                                        </div>
+                                        <input type="date" class="form-control" name="education_end">
+                                    </div>
+                                </div>
+                                <div class="education-list-item input-format">
+                                    <div class="education-list-item-title">
+                                        <div class="flex  align-items-center">
+                                            <span class="prompt">*</span>
+                                            <div class="prompt-value">学校名称</div>
+                                        </div>
+                                    </div>
+                                    <div class="education-list-item-single">
+                                        <input type="text" class="form-control"  name="education_school" placeholder="请输入学校名称">
+                                    </div>
+                                </div>
+
+                                <div class="education-list-item input-format">
+                                    <div class="education-list-item-title">
+                                        <div class="flex  align-items-center">
+                                            <span class="prompt">*</span>
+                                            <div class="prompt-value">学院</div>
+                                        </div>
+                                    </div>
+                                    <div class="education-list-item-single">
+                                        <input type="text" class="form-control" name="education_academy" placeholder="请输入学院名称">
+                                    </div>
+                                </div>
+
+                                <div class="education-list-item input-format">
+                                    <div class="education-list-item-title">
+                                        <div class="flex  align-items-center">
+                                            <span class="prompt">*</span>
+                                            <div class="prompt-value">主修专业</div>
+                                        </div>
+                                    </div>
+                                    <div class="education-list-item-single">
+                                        <input type="text" class="form-control" name="education_major" placeholder="请输入主修专业">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="add-btn-wrap">
+                            <button type="button" class="btn-sm btn-primary mt-2 add-education">添加教育经历</button>
+                        </div>
+
+                        <div class="internship-wrap">
+                            <span class="prompt">*</span>
+                            <span class="title">实习经历</span>
+                            <div style="background-color: #F5F5F5">
+                                <div class="internship-list-item input-format flex flex-row">
+                                    <div class="internship-list-item-one">
+                                        <div class="flex  align-items-center">
+                                            <span class="prompt">*</span>
+                                            <div class="prompt-value">开始日期</div>
+                                        </div>
+                                        <input type="date" class="form-control" name="internship_start">
+                                    </div>
+                                    <div class="internship-list-item-two">
+                                        <div class="flex  align-items-center">
+                                            <span class="prompt">*</span>
+                                            <div class="prompt-value">结束日期</div>
+                                        </div>
+                                        <input type="date" class="form-control" name="internship_end">
+                                    </div>
+                                </div>
+                                <div class="internship-list-item input-format">
+                                    <div class="internship-list-item-title">
+                                        <div class="flex  align-items-center">
+                                            <span class="prompt">*</span>
+                                            <div class="prompt-value">公司名称</div>
+                                        </div>
+                                    </div>
+                                    <div class="internship-list-item-single">
+                                        <input type="text" placeholder="请输入公司名称" class="form-control" name="internship_workplace">
+                                    </div>
+                                </div>
+                                <div class="internship-list-item input-format">
+                                    <div class="internship-list-item-title">
+                                        <div class="flex align-items-center">
+                                            <span class="prompt">*</span>
+                                            <div class="prompt-value">工作描述</div>
+                                        </div>
+                                    </div>
+                                    <div class="internship-list-item-single">
+                                    <textarea class="form-control" id="" cols="30" placeholder="请输入工作描述"
+                                              rows="5" name="internship_desc"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <button type="button" class="btn-sm btn-primary mt-2">添加实习经历</button>
+                        </div>
+                        <div class="campus-wrap">
+                            <span class="prompt">*</span>
+                            <span class="title">校园实践</span>
+                            <div class="input-format">
+                            <textarea name="campus_desc" id="" cols="30" rows="5" class="form-control"
+                                      placeholder="请输入校园及实践经历"></textarea>
+                            </div>
+                        </div>
+                        <div class="competition-wrap">
+                            <span class="prompt">*</span>
+                            <span class="title">奖项荣誉</span>
+                            <div class="input-format">
+                            <textarea name="competition_desc" id="" cols="30" rows="5" class="form-control"
+                                      placeholder="请输入竞赛名称及获奖名次"></textarea>
+                            </div>
+                        </div>
+                        <div class="submit-btn">
+                            <button class=" btn btn-primary" type="submit">提交</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="placeholder"></div>
+        </div>
+    </section>
+{% endblock %}

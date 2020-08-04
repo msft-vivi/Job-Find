@@ -11,10 +11,16 @@
 #job-detail-container {
     background-color: #F5F5F5;
 }
+#job-detail-container .container .job-card-wrap{
+    padding-bottom: 20px;
+}
 #job-detail-container .placeholder{
     height: 40px;
 }
 
+.title-wrap,.job-title-wrap,.job-content,.contact,.share{
+    margin: 0 20px;
+}
 .job-detail-wrap{
     background-color: white;
 }
@@ -57,13 +63,22 @@
     line-height: 30px;
 }
 
-
+.job-content .content-item .company-introduction{
+    max-height: 100px;
+    overflow: auto;
+}
 .contact{
     margin-top: 30px;
 }
 .contact a{
     margin-left: 20px;
+    color: #fff;
+    text-decoration: none;
 }
+.contact a:hover{
+    color: #fff;
+}
+
 .share img{
     width: 30px;
     height: 30px;
@@ -71,4 +86,12 @@
 }
 .share span{
     font-size: 15px;
+}
+
+.job-content pre{
+    white-space: pre-line;
+    font-family: "微软雅黑";
+    margin-left: 20px;
+    line-height: 27px;
+    font-size: 16px;
 }

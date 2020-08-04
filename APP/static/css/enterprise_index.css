@@ -1,0 +1,70 @@
+/*--------------------------------------------------------------
+# enterprise-index common css
+--------------------------------------------------------------*/
+body, html {
+  height: 100%;
+}
+#enterprise-content .container{
+    height: 100%;
+}
+#enterprise-content {
+    /* The image used */
+    background-image: url("../images/hero-bg.jpg");
+
+    /* Full height */
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+#enterprise-content .menu-wrap{
+    width: 100%;
+}
+
+#enterprise-content .post-job{
+    width: 500px;
+    height: 300px;
+    background: url("../images/card_bg.jpg");
+}
+#enterprise-content .title-wrap{
+    margin-left: 30px;
+    margin-top: 30px;
+}
+#enterprise-content  .title-wrap span{
+    display: block;
+}
+#enterprise-content  .title-wrap .title{
+    font-size: 40px;
+    font-weight: bold;
+}
+#enterprise-content .title-wrap .info{
+    margin-top: 15px;
+    font-size: 20px;
+}
+
+#enterprise-content .read-resume{
+    width: 500px;
+    height: 300px;
+    background: url("../images/card_bg.jpg");
+}
+#enterprise-content .post-job,#enterprise-content .read-resume{
+    position: relative;
+}
+#enterprise-content a{
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+}
+#enterprise-content a img{
+    height: 70px;
+    width: 70px;
+    border: 2px solid #000;
+    border-radius: 45px;
+    fill: red;
+}
+#enterprise-content .menu-wrap .filter{
+    filter: invert(30%) sepia(40%) saturate(5400%) hue-rotate(202deg) brightness(106%) contrast(102%);
+}

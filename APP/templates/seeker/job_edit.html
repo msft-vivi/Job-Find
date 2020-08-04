@@ -2,96 +2,216 @@
 {% block head_exts %}
     <link rel="stylesheet" href="{{ url_for('static',filename='css/seeker_job_edit.css') }}">
     <script src="{{ url_for('static',filename='js/seeker_job_edit.js') }}"></script>
+    {{ JSGlue.include() }}
+    <script>
+        $(function () {
+            // idcard-wrap 下拉框
+            $(".idcard-wrap .dropdown-item").on("click", function () {
+                $(this).addClass("selected");
+                $(this).siblings().removeClass("selected");
+                $(".idcard-wrap #selected-idcard-type span.value").text($(this).text());
+            });
+            // phone-wrap 下拉框
+            $(".phone-wrap .dropdown-item").on("click", function () {
+                $(this).addClass("selected");
+                $(this).siblings().removeClass("selected");
+                $(".phone-wrap #selected-phone-type span.value").text($(this).text());
+            })
+            // 文件上传,利用触发器 实现
+            /*$("#upload").on("click", function () {
+                $("#file1").trigger("click");
+                $("#submit").trigger("click");
+            });*/
+        });
+
+        function check() {
+
+            var file_path = $("#file").val();
+            var start_ind = file_path.lastIndexOf(".");
+            var file_type = file_path.substr(start_ind + 1);
+            var allow_type = new Array('pdf', 'png', 'jpg', 'jpeg', 'ppt', 'pptx', 'doc', 'docx');
+            var ok = false;
+            for (var i in allow_type) {
+                if (file_type.toLowerCase() == allow_type[i]) {
+                    ok = true;
+                }
+            }
+            if (ok == false) {
+                alert("文件类型不正确");
+                return false;
+            }
+            else {
+                return true;
+            }
+
+        }
+    </script>
 {% endblock %}
 
 {% block content %}
     <section id="job-edit-container">
         <div class="placeholder"></div>
-        <div class="container">
-            <div class="job-edit-wrap col-12">
+        <div class="container job-edit-wrap">
+            <form method="post" action="{{ url_for('seeker.submit_resume') }}" enctype="multipart/form-data" onsubmit="return check()">
                 <div class="job-card-wrap">
                     <div class="title-wrap">
-                        <span>研发</span>
+                        <span>{{ job.job_category }}</span>
                     </div>
                     <div class="job-title-wrap">
                         <!--category-->
                         <div class="job-title">
-                            <span>后端开发工程师</span>
+                            <span>{{ job.job_name }}</span><span class="text-muted">投递填写</span>
                         </div>
                         <div class="job-city">
                             <img src="{{ url_for('static',filename='icons/alarm.svg') }}" alt="">
-                            <span class="value">北京</span>
+                            <span class="value">{{ job.workplace }}</span>
                             <img src="{{ url_for('static',filename='icons/alarm.svg') }}" alt=""
                                  style="margin-left: 20px">
-                            <span class="value">实习</span>
+                            <span class="value">{{ job.job_type }}</span>
+                        </div>
+                        <div class="primary-key">
+                            <input type="text" name="job_id" value="{{ job.id }}" class="d-none">
+                            <input type="text" name="seeker_id" value="{{ g.user.id }}" class="d-none">
+                            <input type="text" name="enterpriser_id" value="{{ job.job_publisher_id }}" class="d-none">
+                            <input type="text" name="job_name" value="{{ job.job_name }}" class="d-none">
+                            <input type="text" name="workplace" value="{{ job.workplace }}" class="d-none">
+                            <input type="text" name="job_category" value="{{ job.job_category }}" class="d-none">
+                            <input type="text" name="job_type" value="{{ job.job_type }}" class="d-none">
                         </div>
                     </div>
+
                     <hr class="devider">
                     <div class="resume-wrap">
                         <span class="prompt">*</span>
                         <span class="title">简历上传</span>
-                        <input type="text" class="form-control" required>
+                        <div class="input-format">
+                            {#                            <input type="file" id="file1" style="display: none">#}
+                            {#                            <button type="button" class="btn btn-primary" id="upload">上传</button>#}
+                            <input type="file" id="file" name="file" required>
+                            <div class="text-muted">提示：不超过8MB，扩展名为pdf、doc、docx、ppt、pptx、png、jpg、jpeg</div>
+                        </div>
                     </div>
+
                     <div class="name-wrap">
                         <span class="prompt">*</span>
                         <span class="title">姓名</span>
-                        <input type="text" class="form-control" placeholder="请输入姓名" required>
+                        <div class="input-format">
+                            <input type="text" name="username" id="username" class="form-control" placeholder="请输入姓名"
+                                   required>
+                        </div>
                     </div>
                     <div class="phone-wrap">
                         <span class="prompt">*</span>
                         <span class="title">手机号</span>
-                        <div class="search-bar flex justify-content-start">
-                            <span class="form-control">+86 中国大陆</span>
-                            <input type="text" id="search_input" class="form-control" placeholder="请输入手机号">
+                        <div class="input-format flex flex-row">
+                            <div class="dropdown">
+                                <button type="button" class="form-control" id="selected-phone-type"
+                                        data-toggle="dropdown">
+                                    <span class="value">+86 中国大陆</span>
+                                    <span class="dropdown-toggle"></span>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <button type="button" class="dropdown-item selected">+852 中国香港</button>
+                                    <button type="button" class="dropdown-item">+853 中国澳门</button>
+                                    <button type="button" class="dropdown-item">+886 中国台湾</button>
+                                </div>
+                            </div>
+                            <div class="phone-number">
+                                <input type="text" name="phone" id="phone" class="form-control" placeholder="请输入手机号码"
+                                       required>
+                            </div>
                         </div>
                     </div>
                     <div class="email-wrap">
                         <span class="prompt">*</span>
                         <span class="title">常用邮箱</span>
-                        <input type="text" class="form-control" placeholder="请输入邮箱" required>
+                        <div class="input-format">
+                            <input type="text" name="email" id="email" class="form-control" placeholder="请输入邮箱"
+                                   required>
+                        </div>
                     </div>
                     <div class="idcard-wrap">
                         <span class="prompt">*</span>
                         <span class="title">个人证件</span>
-
-                        <div class="flex flex-row">
+                        <div class="input-format flex flex-row">
                             <div class="dropdown">
-                                <button class="dropdown-toggle form-control"
-                                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    身份证
+                                <button type="button" class="form-control" id="selected-idcard-type"
+                                        data-toggle="dropdown">
+                                    <span class="value">身份证</span>
+                                    <span class="dropdown-toggle"></span>
                                 </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                    <button class="dropdown-item" type="button">身份证</button>
-                                    <button class="dropdown-item" type="button">护照</button>
-                                    <button class="dropdown-item" type="button">香港身份证</button>
-                                    <button class="dropdown-item" type="button">台湾证</button>
-                                    <button class="dropdown-item" type="button">其他</button>
+                                <div class="dropdown-menu">
+                                    <button type="button" class="dropdown-item selected">身份证</button>
+                                    <button type="button" class="dropdown-item">护照</button>
+                                    <button type="button" class="dropdown-item">香港身份证</button>
+                                    <button type="button" class="dropdown-item">台胞证</button>
+                                    <button type="button" class="dropdown-item">其它</button>
                                 </div>
                             </div>
                             <div class="idcard">
-                                <input type="text" class="form-control" placeholder="请输入证件号码" required>
+                                <input type="text" name="idcard" id="idcard" class="form-control" placeholder="请输入证件号码"
+                                       required>
                             </div>
                         </div>
                     </div>
                     <div class="sex-wrap">
-
+                        <span class="prompt">*</span>
+                        <span class="title">性别</span>
+                        <div class="input-format">
+                            <input type="radio" id="radio1" name="sex" value="男" required><span>男</span>
+                            <input type="radio" id="radio2" name="sex" value="女" required><span>女</span>
+                        </div>
                     </div>
                     <div class="birthday-wrap">
-
+                        <span class="prompt">*</span>
+                        <span class="title">出生日期</span>
+                        <div class="input-format">
+                            <input type="date" name="birthday" id="birthday" class="form-control" placeholder="请选择日期"
+                                   required>
+                        </div>
                     </div>
                     <div class="education-wrap">
-
+                        <span class="prompt">*</span>
+                        <span class="title">教育经历</span>
+                        <div class="input-format">
+                            <textarea name="education_desc" id="education_desc" cols="30" rows="5"
+                                      class="form-control"
+                                      placeholder="例：2016-06 至 2020-09  清华大学  本科"></textarea>
+                        </div>
                     </div>
-                    <div class="internship-wrap">
-
-                    </div>
-                    <div class="campus-wrap">
-
-                    </div>
-                    <button class="btn btn-primary">提交</button>
                 </div>
-            </div>
-            <div class="placeholder"></div>
+                <div class="internship-wrap">
+                    <span class="prompt">*</span>
+                    <span class="title">实习经历</span>
+                    <div class="input-format">
+                            <textarea name="internship_desc" id="internship_desc" cols="30" rows="5"
+                                      class="form-control"
+                                      placeholder="请输入实习经历"></textarea>
+                    </div>
+                </div>
+                <div class="campus-wrap">
+                    <span class="prompt">*</span>
+                    <span class="title">校园实践</span>
+                    <div class="input-format">
+                            <textarea name="campus_desc" id="campus_desc" cols="30" rows="5" class="form-control"
+                                      placeholder="请输入校园及实践经历"></textarea>
+                    </div>
+                </div>
+                <div class="competition-wrap">
+                    <span class="prompt">*</span>
+                    <span class="title">奖项荣誉</span>
+                    <div class="input-format">
+                            <textarea name="competition_desc" id="competition_desc" cols="30" rows="5"
+                                      class="form-control"
+                                      placeholder="请输入竞赛名称及获奖名次"></textarea>
+                    </div>
+                </div>
+                <div class="submit-btn">
+                    <button class=" btn btn-primary" type="submit" id="submit">提交</button>
+                </div>
+            </form>
+        </div>
+        <div class="placeholder"></div>
         </div>
     </section>
 {% endblock %}

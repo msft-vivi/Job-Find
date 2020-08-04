@@ -1,0 +1,108 @@
+{% extends 'enterprise/base_enterprise.html' %}
+{% block head_exts %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/enterprise_resume_detail.css') }}">
+    <script>
+        $(function () {
+           $("#back").on("click",function () {
+                window.history.go(-1);
+           })
+        });
+    </script>
+{% endblock %}
+{% block content %}
+    <section id="resume-wrap-container">
+        <div class="placeholder"></div>
+        <div class="container resume-wrap-card">
+
+            <div class="title-wrap">
+                <span>{{ resume.job_category }}</span>
+            </div>
+            <div class="job-title-wrap">
+                <!--category-->
+                <div class="job-title">
+                    <span>{{ resume.job_name }}</span> <span class="text-muted">投递岗位</span>
+                </div>
+                <hr class="divider">
+                <div class="job-city">
+                    <img src="{{ url_for('static',filename='icons/alarm.svg') }}" alt="">
+                    <span class="value">{{ resume.workplace }}</span>
+                    <img src="{{ url_for('static',filename='icons/alarm.svg') }}" alt=""
+                         style="margin-left: 20px">
+                    <span class="value">{{ resume.job_type }}</span>
+                </div>
+            </div>
+
+            <div class="basic-info-wrap">
+                <h4>基本信息</h4>
+                <hr class="divider">
+                <div class="basic-info-content flex flex-row">
+                    <div class="left">
+                        <div class="basic-info-item">
+                            <span>姓名：</span><span>{{ resume.username }}</span>
+                        </div>
+                        <div class="basic-info-item">
+                            <span>身份：</span><span>救世主</span>
+                        </div>
+                        <div class="basic-info-item">
+                            <span>手机号：</span><span>{{ resume.phone }}</span>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="basic-info-item">
+                            <span>性别：</span><span>{{ resume.sex }}</span>
+                        </div>
+                        <div class="basic-info-item">
+                            <span>出生日期：</span><span>{{ resume.birthday }}</span>
+                        </div>
+                        <div class="basic-info-item">
+                            <span>邮箱：</span><span>{{ resume.email }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="education-wrap">
+                <h4>教育经历</h4>
+                <hr class="divider">
+                <pre>
+                    {{ resume.education }}
+                </pre>
+            </div>
+
+            <div class="competition-wrap">
+                <h4>奖项荣誉</h4>
+                <hr class="divider">
+                <div class="competition-content">
+                    <pre>
+                        {{ resume.competition }}
+                    </pre>
+                </div>
+            </div>
+
+            <div class="internship-wrap">
+                <h4>实习经历</h4>
+                <hr class="divider">
+                <div class="internship-content">
+                    <pre>
+                        {{ resume.internship }}
+                    </pre>
+                </div>
+            </div>
+
+            <div class="campus-wrap">
+                <h4>校园及实践经历</h4>
+                <hr class="divider">
+                <div class="campus-content">
+                    <pre>
+                        {{ resume.campus }}
+                    </pre>
+                </div>
+            </div>
+            <div class="btn-wrap flex justify-content-end">
+{#                <button class="btn btn-primary">查看个人简历</button>#}
+                <a href="{{ url_for('enterprise.download_resume',file_name=resume.resume_file_name) }}" class="btn btn-primary">查看个人简历</a>
+                <button class="btn btn-primary" id="back">返回</button>
+            </div>
+        </div>
+        <div class="placeholder"></div>
+    </section>
+{% endblock %}

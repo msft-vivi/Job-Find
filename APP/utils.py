@@ -6,9 +6,12 @@
 # @Organization : NJU
 # @email : cleverzhangw@qq.com
 import functools
-from flask import redirect,url_for
+import os
+
+from flask import redirect, url_for, send_from_directory, current_app
 from sqlalchemy import text
 
+from APP.models.exceptions import MyHttpException
 from APP.models.job_model import Job
 
 
@@ -100,3 +103,15 @@ def parse_workplace(data):
     data = data.strip()
     data = data.replace('[','').replace(']','').replace("\"",'').split(",")
     return data
+
+
+def download_file(file_name):
+    """
+    根据服务器上真实的文件名下载附件
+    :param file_name:
+    :return:
+    """
+    if os.path.isfile(os.path.join(current_app.config['UPLOAD_FOLDER'],file_name)):
+        return send_from_directory(current_app.config['UPLOAD_FOLDER'],file_name,as_attachment=True)
+    else:
+        raise MyHttpException("File not found error.")

@@ -1,0 +1,63 @@
+{% extends 'seeker/base_job.html' %}
+{% block head_exts %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/seeker_my_post.css') }}">
+{% endblock %}
+
+{% block content %}
+    <section id="post-wrap-container">
+        <div class="placeholder"></div>
+        <div class="container post-wrap">
+            <div class="post-list">
+                {% if pagination.items %}
+                    {% for resume in pagination.items %}
+                        <div class="post-list-item">
+                            <div class="flex flex-row align-items-center">
+                                <span class="job-title">{{ resume['job_name'] }}</span>
+                                <span class="status badge badge-info">简历筛选</span>
+                                <a class="revise-resume btn-sm btn-primary ml-auto" data-toggle="tooltip"
+                                   data-placement="left"
+                                   title="HR 处理前，可不断针对简历进行完善">
+                                    编辑简历</a>
+                            </div>
+                            <div class="job-info">
+                                <img src="{{ url_for('static',filename='icons/alarm.svg') }}" alt="">
+                                <span>{{ resume.workplace }}</span>
+                                <img src="{{ url_for('static',filename='icons/alarm.svg') }}" alt="">
+                                <span>{{ resume.job_category }}</span>
+                                <img src="{{ url_for('static',filename='icons/alarm.svg') }}" alt="">
+                                <span>{{ resume.enterprise }}</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="no-data flex justify-content-center align-items-center">
+                        <h2 class="text-muted">暂无投递记录</h2>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="row">
+                <div class="col-12 flex justify-content-center mt-3">
+                    <ul class=pagination>
+                        {%- for page in pagination.iter_pages(left_edge=5,left_current=5,right_current=5,right_edge=5) %}
+                            {% if page %}
+                                {% if page != pagination.page %}
+                                    <li class="page-item"><a class="page-link text-primary"
+                                                             href="{{ url_for('seeker.my_post') }}?page={{ page }}&per_page={{ per_page }}">{{ page }}</a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item active"><a class="page-link bg-primary text-white"
+                                                                    href="{{ url_for('seeker.my_post') }}?page={{ page }}&per_page={{ per_page }}">{{ page }}</a>
+                                    </li>
+                                {% endif %}
+                            {% else %}
+                                <span class=text-primary>…</span>
+                            {% endif %}
+                        {%- endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </button>
+        <div class="placeholder"></div>
+    </section>
+{% endblock %}

@@ -1,0 +1,68 @@
+/*--------------------------------------------------------------
+# enterprise-post-job common css
+--------------------------------------------------------------*/
+.placeholder{
+    height: 40px;
+}
+
+#post-job{
+
+}
+#post-job .post-jog-wrap{
+    background-color: #fff;
+    position: relative;
+    padding-bottom: 80px;
+}
+
+#post-job .wrap-format{
+    margin: 0px 20px;
+}
+#post-job .post-jog-wrap{
+    padding-top: 50px;
+}
+
+#post-job .wrap-format:nth-child(n+1){
+    margin-top: 30px;
+    width: 50%;
+}
+#post-job .tab-pane{
+    width: 100%;
+}
+#post-job .tab-pane .job-requirement-wrap,#post-job .tab-pane .job-desc-wrap{
+    width: 80%;
+}
+
+#post-job .dropdown>button{
+    box-shadow: none;
+    color: #868e96;
+    border: 1px solid #ced4da;
+    width: 100%;
+}
+
+#post-job .dropdown-item:hover{
+    color: #007bff;
+}
+
+#post-job .nav-link{
+    color: #000;
+    margin-top: 10px;
+}
+#post-job .nav-link.active{
+    color: #fff;
+}
+
+#post-job .post-jog-wrap .row{
+    margin-left: 30px;
+}
+
+#post-job .city-select{
+    width: 100%;
+}
+
+#submit{
+    position: absolute;
+    right: 80px;
+    bottom: 50px;
+    padding: 5px 20px;
+    border-radius: 20px;
+}

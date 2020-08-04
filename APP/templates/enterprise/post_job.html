@@ -1,0 +1,205 @@
+{% extends 'enterprise/base_enterprise.html' %}
+{% block head_exts %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/enterprise_post_job.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/city-select.css') }}">
+    <script type="text/javascript" src="{{ url_for('static',filename='lib/js/citydata.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='lib/js/citySelect-1.0.3.js') }}"></script>
+    {{ JSGlue.include() }}
+    <script type="text/javascript">
+        $(function () {
+            var city_select;
+            // 单选
+            city_select = $('#city-select').citySelect({
+                dataJson: cityData,
+                multiSelect: false,
+                whole: true,
+                shorthand: true,
+                search: false,
+                hotCity: ['北京市', '上海市', '广州市', '深圳市', '南京市', '杭州市', '天津市', '重庆市', '成都市', '青岛市', '苏州市', '无锡市', '常州市', '温州市', '武汉市', '长沙市', '石家庄市', '南昌市', '三亚市', '合肥市'],
+                onInit: function () {
+                    console.log(this)
+                },
+                onTabsAfter: function (target) {
+                    console.log(target)
+                },
+                onCallerAfter: function (target, values) {
+                    console.log(JSON.stringify(values))
+                }
+            });
+
+
+            $(".job-category-wrap .dropdown-item").on("click", function () {
+                $("#job-category").text($(this).text());
+                $("#job-category").css("color", "#495057");
+            });
+
+            $(".job-type-wrap .dropdown-item").on("click", function () {
+                $("#job-type").text($(this).text());
+                $("#job-type").css("color", "#495057");
+            });
+            $("#submit").on("click", function () {
+                console.log("click submit");
+                ajax_request(city_select);
+            });
+        });
+
+        function validate(city_select) {
+            var city = city_select.getCityVal();
+            if (!is_null(city)) {
+                workplace = city.name;
+            } else {
+              workplace = null;
+            }
+            job_name = $("#job-name").val();
+            job_category = $("#job-category").text();
+            job_type = $("#job-type").text();
+            job_desc = $("#job-desc").val();
+            job_requirement = $("#job-requirement").val();
+            if (is_null(workplace) || is_null(job_name) || is_null(job_category) ||
+                is_null(job_type) || is_null(job_desc) || is_null(job_type) || is_null(job_requirement)) {
+                return false;
+            } else {
+                return true;
+            }
+            return true;
+        }
+
+        function is_null(x) {
+            if (x == "" || x == undefined || x == null) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function ajax_request(city_select) {
+            var flag = validate(city_select);
+            console.log(flag);
+            if (flag) {
+                var json_data = {
+                    "workplace": city_select.getCityVal().name,
+                    "job_name": $("#job-name").val(),
+                    "job_category": $("#job-category").text(),
+                    "job_type": $("#job-type").text(),
+                    "job_desc": $("#job-desc").val(),
+                    "job_requirement": $("#job-requirement").val()
+                };
+                $.ajax({
+                    url: Flask.url_for('enterprise.post_job'),
+                    type: "POST",
+                    dataType: "json",
+                    data: {"data": JSON.stringify(json_data)},
+                    success: function (data) {
+                        if (data.msg == "ok") {
+                            window.location.href = Flask.url_for('enterprise.index');
+                        } else {
+                            window.location.href = Flask.url_for('enterprise.post_job');
+                        }
+                    },
+                    error: function (data) {
+                        window.location.href = Flask.url_for('enterprise.post_job');
+                    }
+                });
+            } else {
+                console.log("wdwdw");
+                alert("Job数据不完整，请重新提交");
+            }
+        }
+    </script>
+{% endblock %}
+
+{% block content %}
+    <section id="post-job">
+        <div class="placeholder"></div>
+        <div class="post-jog-wrap container">
+            <div class="row flex align-items-baseline">
+                <div class="col-3">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home"
+                           role="tab" aria-controls="v-pills-home" aria-selected="true">基本信息</a>
+                        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
+                           role="tab" aria-controls="v-pills-profile" aria-selected="false">岗位描述</a>
+                        <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages"
+                           role="tab" aria-controls="v-pills-messages" aria-selected="false">岗位要求</a>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-home">
+                            <div class="job-name-wrap flex justify-content-start wrap-format">
+                                <div>
+                                    <span class="input-group-text">工作名称</span>
+                                </div>
+                                <input type="text" id="job-name" class="form-control" placeholder="请输入职位名称">
+                            </div>
+                            <div class="job-category-wrap flex justify-content-start wrap-format">
+                                <div>
+                                    <span class="input-group-text">职位类别</span>
+                                </div>
+                                <div class="dropdown" style="width: 100%">
+                                    <button class="btn flex" type="button"
+                                            data-toggle="dropdown" id="select-job-category">
+                                        <span id="job-category">请选择职位类型</span>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                        <button class="dropdown-item" type="button">研发</button>
+                                        <button class="dropdown-item" type="button">产品</button>
+                                        <button class="dropdown-item" type="button">设计</button>
+                                        <button class="dropdown-item" type="button">市场</button>
+                                        <button class="dropdown-item" type="button">销售</button>
+                                        <button class="dropdown-item" type="button">运营</button>
+                                        <button class="dropdown-item" type="button">教研</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="job-type-wrap flex justify-content-start wrap-format">
+                                <div>
+                                    <span class="input-group-text">职位类型</span>
+                                </div>
+                                <div class="dropdown" style="width: 100%">
+                                    <button class="btn flex" type="button"
+                                            data-toggle="dropdown" id="select-job-type">
+                                        <span id="job-type">请选择职位类型</span>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                        <button class="dropdown-item" type="button">全职</button>
+                                        <button class="dropdown-item" type="button">实习</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="workplace-wrap flex justify-content-start wrap-format">
+                                <div>
+                                    <span class="input-group-text">工作地点</span>
+                                </div>
+                                <div class="city-select" id="city-select" placeholder="搜索职位名称"></div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-profile">
+                            <div class="job-desc-wrap flex justify-content-start wrap-format">
+                                <textarea autofocus name="job_desc" id="job-desc"
+                                          cols="5" rows="15"
+                                          class="form-control"
+                                          placeholder="请输入岗位描述信息"></textarea>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-messages">
+                            <div class="job-requirement-wrap flex justify-content-start wrap-format">
+                                <textarea autofocus name="job_requirement" id="job-requirement" cols="5" rows="15"
+                                          class="form-control"
+                                          placeholder="请输入岗位要求信息"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="btn-wrap">
+        <a id="submit" type="submit" class="btn btn-primary">发布</a>
+    </section>
+{% endblock %}
+
+
+

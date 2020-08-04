@@ -22,8 +22,11 @@ class Config:
 	DEBUG = False
 	TESTING = False
 	SQLALCHEMY_TRACK_MODIFICATIONS = False
-
+	JSON_AS_ASCII = False  # 解决 jsonify(request.form) 乱码问题
 	SECRET_KEY =  b'9527'
+	ALLOWED_EXTENSIONS = {'pdf', 'png', 'jpg', 'jpeg','ppt','pptx','doc','docx'}
+	UPLOAD_FOLDER = os.path.join(BASE_DIR,"tmp")
+	MAX_CONTENT_LENGTH = 8 * 1024 * 1024 # 设置网络传输的最大文件大小
 	# SESSION_TYPE = 'redis'
 	# SESSION_COOKIE_SECURE = True
 	# SESSION_USE_SIGNER = True 设置为True session无法读取数据？？
@@ -36,11 +39,11 @@ class DevelopConfig(Config):
 	db_info = {
 		"ENGINE":"mysql",
 		"DRIVER":"pymysql",
-		"HOST":"127.0.0.1",
+		"HOST":"47.99.198.164",
 		"PORT":"3306",
 		"DATABASE":"job_find",
 		"USERNAME":"root",
-		"PASSWORD":"12345"
+		"PASSWORD":"zw12345"
 	}
 
 	SQLALCHEMY_DATABASE_URI = get_db_uri(db_info)
@@ -54,7 +57,7 @@ class TestConfig(Config):
 		"DRIVER": "pymysql",
 		"HOST": "127.0.0.1",
 		"PORT": "3306",
-		"DATABASE": "english",
+		"DATABASE": "job_find",
 		"USERNAME": "root",
 		"PASSWORD": "12345"
 	}

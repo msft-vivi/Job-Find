@@ -1,0 +1,28 @@
+{% extends 'enterprise/base_enterprise.html' %}
+{% block head_exts %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/enterprise_index.css') }}">
+{% endblock %}
+
+{% block content %}
+<section id="enterprise-content">
+    <div class="container flex align-items-center">
+        <div class="menu-wrap flex">
+            <div class="post-job mr-auto">
+                <div class="title-wrap">
+                    <span class="title">发布招聘</span>
+                    <span class="info text-muted">发布企业招聘信息</span>
+                </div>
+                <a href="{{ url_for('enterprise.post_job') }}"><img src="{{ url_for('static',filename='icons/arrow-right.svg') }}" alt="" class="filter"></a>
+            </div>
+
+            <div class="read-resume ml-auto">
+                <div class="title-wrap">
+                    <span class="title">查阅简历</span>
+                    <span class="info text-muted">查看求职者简历</span>
+                </div>
+                <a href="{{ url_for('enterprise.read_resume',e_id=g.user.id) }}"><img src="{{ url_for('static',filename='icons/arrow-right.svg') }}" alt="" class="filter"></a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

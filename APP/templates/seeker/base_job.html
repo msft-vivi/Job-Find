@@ -17,10 +17,16 @@
     <script src="{{ url_for('static',filename='lib/js/jquery-3.4.1.js') }}"></script>
     <script src="{{ url_for('static',filename='lib/js/popper-1.6.1.js') }}"></script>
     <script src="{{ url_for('static',filename='lib/js/bootstrap-4.4.1.min.js') }}"></script>
-
+    <script>
+        $(function () {
+            $(".nav-item a").on("click",function () {
+                $(this).parent().siblings().removeClass("active");
+                $(this).parent().addClass("active");
+            })
+        })
+    </script>
     {% block head_exts %}{% endblock %}
     <title> - {% block title %} {% endblock %}</title>
-
 </head>
 <body>
 <header id="job-header">
@@ -40,11 +46,9 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-lg-5 pl-lg-5 brand-ul">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{ url_for('seeker.index') }}"><span>校园招聘</span><span
-                                class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><span>实习生招聘</span></a>
+                        <a class="nav-link" href="{{ url_for('seeker.index') }}">
+                            <span>校园招聘</span>
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><span>了解我们</span></a>
@@ -52,25 +56,28 @@
                 </ul>
                 <ul class="navbar-nav ml-auto auth-ul">
                     {% if not g.user %}
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a href="{{ url_for('auth.login') }}"><span>登录</span></a>
                         </li>
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="text-muted disabled" href="#"><span>/</span></a>
                         </li>
                         <li class="nav-item register">
                             <a href="{{ url_for('auth.register') }}"><span>注册</span></a>
                         </li>
                     {% else %}
-                        <li class="nav-item">
-                            <a href="#"><span>{{ g.user.username }}</span></a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="text-muted disabled" href="#"><span>/</span></a>
-                        </li>
-                        <li class="nav-item">
-                              <a href="{{ url_for('auth.logout') }}"><span>退出</span></a>
-                        </li>
+                        <div class="dropdown">
+                            <a class="dropdown-toggle prompt"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ g.user.username }}
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{{ url_for('seeker.my_post',user_id=g.user.id) }}">我的投递</a>
+                                <a class="dropdown-item" href="{{ url_for('auth.logout') }}">退出</a>
+                            </div>
+                            <a class="disabled prompt">/</a>
+                            <a class="prompt" href="{{ url_for('auth.logout') }}">退出</a>
+                        </div>
                     {% endif %}
 
                     {% block header %}
@@ -83,18 +90,17 @@
 </header>
 
 {% block content %}
-
+    {#    <section class="content">#}
+    {#        {% for message in get_flashed_messages() %}#}
+    {#            <div class="flash">{{ message }}</div>#}
+    {#        {% endfor %}#}
+    {#    </section>#}
 {% endblock %}
-<section class="content">
-    {% for message in get_flashed_messages() %}
-        <div class="flash">{{ message }}</div>
-    {% endfor %}
-</section>
 
-<footer id="job-footer" class="flex justify-content-center align-items-center" ">
-        <div class="col-12 flex justify-content-center align-items-center">
-            <p>&copy; 山西大学计算机与信息技术学院</p>
-        </div>
+<footer id="job-footer" class="flex justify-content-center align-items-center">
+    <div class="col-12 flex justify-content-center align-items-center">
+        <p>&copy; 山西大学计算机与信息技术学院</p>
+    </div>
 </footer>
 
 </body>

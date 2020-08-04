@@ -10,14 +10,17 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from APP.exts import db
 from APP.models import BaseModel
 
-
+# Object Relationship Mapping
 class Enterpriser(BaseModel):
     __tablename__= "enterpriser"
     username = db.Column(db.String(32), unique=True)
     _password = db.Column(db.String(256))
     phone = db.Column(db.String(32), unique=True)
+    email = db.Column(db.String(64))
     enterprise_name = db.Column(db.String(128))
+    enterprise_desc = db.Column(db.Text)  # 提供该字段，由企业自行添加
     is_delete = db.Column(db.Boolean, default=False)
+
     # is_verify = db.Column(db.Boolean, default=False)
 
     @property
